@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\proveedorController;
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
@@ -14,6 +15,9 @@ use App\Http\Livewire\Personal\EditarPersonalComponent;
 use App\Http\Livewire\Personal\PersonalComponent;
 use App\Http\Livewire\Personal\RegistrarPersonalComponent;
 use App\Http\Livewire\Profile;
+use App\Http\Livewire\Proveedor\EditarProveedorComponent;
+use App\Http\Livewire\Proveedor\ProveedorComponent;
+use App\Http\Livewire\Proveedor\RegistroProveedorComponent;
 use App\Http\Livewire\RTL;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
@@ -66,4 +70,10 @@ Route::group(['middleware' => 'auth'], function () {
     
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
+
+    // proovedor
+    Route::get('/proveedor', ProveedorComponent::class)->name('proveedor.index');
+    Route::get('/proveedor/registro', RegistroProveedorComponent::class)->name('proveedor-registro');
+    Route::get('/proveedor/editar/{proveedor_id}', EditarProveedorComponent::class)->name('proveedor-editar');
+
 });

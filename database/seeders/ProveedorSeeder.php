@@ -21,6 +21,7 @@ class ProveedorSeeder extends Seeder
             'about' => 'sadadadasdadadada',
             'tipo_proveedor' => 'polera'
         ];
+        
         proveedor::create($proveedor);
         
     }

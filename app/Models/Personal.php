@@ -9,6 +9,7 @@ use App\Models\User;
 class Personal extends Model
 {
   use HasFactory;
+  
   //relacion de  uno a uno con personla y user
   public function user()
   {

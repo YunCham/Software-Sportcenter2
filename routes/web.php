@@ -18,6 +18,8 @@ use App\Http\Livewire\RTL;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Tables;
+use App\Http\Livewire\Usuario\EditarUsuarioComponent;
+use App\Http\Livewire\Usuario\RegistrarUsuarioComponent;
 use App\Http\Livewire\Usuario\UsuarioComponent;
 use App\Http\Livewire\VirtualReality;
 use GuzzleHttp\Middleware;
@@ -66,4 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
     
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
+    Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
+    Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
 });

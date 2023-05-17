@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Usuario;
 
+use App\Models\Personal;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -58,6 +59,7 @@ class RegistrarUsuarioComponent extends Component
 
   public function render()
   {
-    return view('livewire.usuario.registrar-usuario-component');
+    $personales=Personal::orderBy('nombre','ASC')->get();
+    return view('livewire.usuario.registrar-usuario-component',['personales'=>$personales]);
   }
 }

@@ -76,35 +76,44 @@
                                         </td>
                                         <td class="align-middle">
 
-                                            <a href="#"
-                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                data-original-title="Eliminar" data-bs-toggle="modal" data-bs-target="#modal-notification">
+                                            <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Eliminar"
+                                                data-bs-toggle="modal" data-bs-target="#modal-notification">
                                                 Eliminar
-                                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                                  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                                    <div class="modal-content">
-                                                      <div class="modal-header">
-                                                        <h6 class="modal-title font-weight-normal" id="modal-title-notification">Se requiere tu atención!!!</h6>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                          <span aria-hidden="true">×</span>
-                                                        </button>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <div class="py-3 text-center">
-                                                          <i class="material-icons h1 text-secondary">
-                                                            Eliminar Personal
-                                                          </i>
-                                                          <h4 class="text-gradient text-danger mt-4">Esta seguro!</h4>
-                                                          <p>Paso a Paso</p>
+                                                <div class="modal fade" id="modal-notification" tabindex="-1"
+                                                    role="dialog" aria-labelledby="modal-notification"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-danger modal-dialog-centered modal-"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h6 class="modal-title font-weight-normal"
+                                                                    id="modal-title-notification">Se requiere tu
+                                                                    atención!!!</h6>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="py-3 text-center">
+                                                                    <i class="material-icons h1 text-secondary">
+                                                                        Eliminar Personal
+                                                                    </i>
+                                                                    <h4 class="text-gradient text-danger mt-4">Esta
+                                                                        seguro!</h4>
+                                                                    <p>Paso a Paso</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm"wire:click="deletePersonal({{ $personal->id }})">Eliminar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-secondary btn-sm">Cancelar</button>
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary btn-sm"wire:click="deletePersonal({{ $personal->id }})">Eliminar</button>
-                                                        <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
-                                                       </button>
-                                                      </div>
                                                     </div>
-                                                  </div>
                                                 </div>
 
                                             </a>
@@ -113,7 +122,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-{{--
+                        {{--
                         <nav aria-label="Page navigation example">
                           <ul class="pagination justify-content-end">
                         

@@ -36,12 +36,11 @@
                             </div>
                         </div>
                     @endif
-                    {{-- alerta --}}
-                    @if (Session::has('message'))
-                        <div class="alert alert-danger alert-dismissible" role="alert">{{ Session::get('message') }}
-                        </div>
-                    @endif
-                    <form wire:submit.prevent='storeUsuario'>
+                      {{-- alerta --}}
+                      @if (Session::has('message'))
+                      <div class="alert alert-danger alert-dismissible" role="alert">{{ Session::get('message') }}</div>
+                  @endif
+                    <form wire:submit.prevent='updateUsuario'>
                         <div class="row">
 
                             <div class="mb-3 col-md-6">
@@ -83,18 +82,18 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Personal</label>
-                                <select class="form-control border border-2 p-2" name="personal_id" id=""
-                                    wire:model="personal_id">
-                                    <option value="">Selecione al perosnal</option>
-                                    @foreach ($personales as $personal)
-                                        <option value="{{ $personal->id }}">{{ $personal->nombre }}</option>
-                                    @endforeach
-                                </select>
-                                @error('name')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
+                              <label class="form-label">Personal</label>
+                              <select class="form-control border border-2 p-2" name="personal_id" id=""
+                                  wire:model="personal_id">
+                                  <option value="">Selecione al perosnal</option>
+                                  @foreach ($personales as $personal)
+                                      <option value="{{ $personal->id }}">{{ $personal->nombre }}</option>
+                                  @endforeach
+                              </select>
+                              @error('name')
+                                  <p class='text-danger inputerror'>{{ $message }} </p>
+                              @enderror
+                          </div>
 
                             <div class="mb-3 col-md-12">
 

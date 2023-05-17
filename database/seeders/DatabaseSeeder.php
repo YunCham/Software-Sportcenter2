@@ -19,5 +19,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@material.com',
             'password' => ('secret')
         ]);
+        $this->call(ProveedorSeeder::class);
+
+
     }
 }

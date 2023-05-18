@@ -7,9 +7,9 @@
                         <h6 class="text-white text-capitalize ps-3">Personal</h6>
                     </div>
                     {{-- boton añadir --}}
-                    <div class=" me-3 my-3 text-end">
-                        {{-- <a class="btn bg-gradient-dark mb-0" href="{{ route('personal-registro') }}"><i
-                                class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a> --}}
+                    <div class=" me-3 my-3 text-end">   
+                        <a class="btn bg-gradient-dark mb-0" href="{{ route('proveedor-registro') }}"><i
+                                class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a>                
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
@@ -60,6 +60,13 @@
                                         <td>
                                             <p class="text-sm font-weight-bold mb-0">{{ $user->phone }}</p>
                                         </td>
+                                        <td class="align-middle">
+                                          <a href="{{ route('proveedor-editar', ['proveedor_id' => $user->id]) }}"
+                                              class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                              data-original-title="Edit user">
+                                              Editar
+                                          </a>
+                                      </td>
                                         
                                         <td class="align-middle">
 
@@ -79,7 +86,7 @@
                                                       <div class="modal-body">
                                                         <div class="py-3 text-center">
                                                           <i class="material-icons h1 text-secondary">
-                                                            Eliminar Usuario
+                                                            Eliminar Proveedor
                                                           </i>
                                                           <h4 class="text-gradient text-danger mt-4">Esta seguro!</h4>
                                                           <p>Paso a Paso</p>

@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     @endif
-                    <form wire:submit.prevent='updatePersonal'>
+                    <form wire:submit.prevent='updateProveedor'>
                         <div class="row">
 
                             <div class="mb-3 col-md-6">

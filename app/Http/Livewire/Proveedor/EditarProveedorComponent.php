@@ -44,7 +44,7 @@ class EditarProveedorComponent extends Component
 
     
   //implementacio de la funcion donde Edita los datos
-  public function updatePersonal()
+  public function updateProveedor()
   {
     $this->validate([
         'name' => 'required',
@@ -62,7 +62,7 @@ class EditarProveedorComponent extends Component
     $proveedor->location = $this->location;
     $proveedor->tipo_proveedor = $this->tipo_proveedor;
     $proveedor->save();
-    session()->flash('message', 'Nuevo Personal registrado!');
+    session()->flash('message', 'datos actulizados');
   }
 
     public function goBack()

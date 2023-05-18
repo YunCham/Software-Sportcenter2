@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Personal;
+use App\Models\Transaccion;
 
 class User extends Authenticatable
 {
@@ -51,9 +52,13 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
   ];
 
-  //relacion de  uno a uno con personla y user 
+  //relacion de  uno a uno con persona y user 
   public function personal()
   {
     return $this->belongsTo(Personal::class, 'personal_id');
+  }
+  //relacion de uno a muchos 
+  public function transaccions(){
+    return $this->hasMany(Transaccion::class);
   }
 }

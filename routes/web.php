@@ -9,12 +9,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
+use App\Http\Livewire\Membresia\EditarMembresiaComponent;
+use App\Http\Livewire\Membresia\MembresiaComponent;
+use App\Http\Livewire\Membresia\RegistrarMembresiaComponent;
 use App\Http\Livewire\Notifications;
 use App\Http\Livewire\Personal\EditarPersonalComponent;
 use App\Http\Livewire\Personal\PersonalComponent;
 use App\Http\Livewire\Personal\RegistrarPersonalComponent;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\RTL;
+use App\Http\Livewire\Servicio\EditarServicioComponet;
+use App\Http\Livewire\Servicio\EditarTipoServicioComponet;
+use App\Http\Livewire\Servicio\RegistroServicioComponet;
+use App\Http\Livewire\Servicio\RegistroTipoServicioComponet;
+use App\Http\Livewire\Servicio\ServicioComponet;
+use App\Http\Livewire\Servicio\TipoServicioComponet;
 use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Tables;
@@ -70,4 +79,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
     Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
     Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
+
+    //! Router servicios
+    Route::get('/tiposervicio', TipoServicioComponet::class)->name('tiposervicio-registro');
+    Route::get('/tiposervicio/registro',RegistroTipoServicioComponet::class )->name('tiposervicio-añadir');
+    Route::get('/tiposervicio/editar/{tipo_servicio_id}',EditarTipoServicioComponet::class )->name('tiposervicio-editar');
+
+    Route::get('/servicio', ServicioComponet::class)->name('servicio');
+    Route::get('/servicio/registrar',RegistroServicioComponet::class)->name('servicio-registrar');
+    Route::get('/servicio/editar/{servicio_id}',EditarServicioComponet::class)->name('servicio-editar');
+
+    //! membrecia
+    Route::get('/membresias', MembresiaComponent::class)->name('membresia');
+    Route::get('/membresia/registrar',RegistrarMembresiaComponent::class)->name('membresia-registrar');
+    Route::get('/membresia/editar/{membresia_id}',EditarMembresiaComponent::class)->name('membresia-editar');
+
+
+
+
+
 });

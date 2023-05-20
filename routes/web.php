@@ -81,14 +81,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
     Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
 
-<<<<<<< HEAD
     Route::get('/compra/brand', BrandComponent::class)->name('marca.index');
     Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
 
     Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
 
     Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');
-=======
     //! Router servicios
     Route::get('/tiposervicio', TipoServicioComponet::class)->name('tiposervicio-registro');
     Route::get('/tiposervicio/registro',RegistroTipoServicioComponet::class )->name('tiposervicio-añadir');
@@ -106,6 +104,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
->>>>>>> 078596f82cfb5778a64d221c9bca6fbf2f2c0e01
 
 });

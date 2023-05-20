@@ -14,7 +14,7 @@ class Servicio extends Model
 
     //relacion de uno a muchos inversa
     public function tipo_servicio(){
-        return $this->belongsTo(TipoServicio::class);
+        return $this->belongsTo(TipoServicio::class, 'tipo_servicio_id');
     }
     //relacion de muchos a muchos 
     public function membresias(){

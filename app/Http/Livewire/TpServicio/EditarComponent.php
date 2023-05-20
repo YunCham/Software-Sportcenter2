@@ -35,7 +35,7 @@ class EditarComponent extends Component
         $tipoServicio = TipoServicio::find($this->tservicio_id);
         $tipoServicio->nombre = $this->nombre;
         $tipoServicio->save();
-        session()->flash('message', 'Datos actualizados!');
+        session()->flash('status', 'Datos actualizados!');
     }
     
      //función para retroceder

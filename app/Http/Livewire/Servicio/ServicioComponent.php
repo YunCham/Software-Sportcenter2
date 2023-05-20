@@ -7,12 +7,13 @@ use App\Models\Servicio;
 
 class ServicioComponent extends Component
 {
-
+    public $deletedServicioId;
     public function deleteServicio($servicio_id)
     {
         $servicio = Servicio::find($servicio_id);
         $servicio->delete();
-        session()->flash('message', 'Registro elimidado exitosamente!');
+        $this->deletedServicioId = $servicio_id;
+        session()->flash('message', 'Registro eliminado exitosamente!');
     }
 
 

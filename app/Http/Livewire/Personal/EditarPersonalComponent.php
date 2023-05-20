@@ -94,7 +94,7 @@ class EditarPersonalComponent extends Component
     $personal->fecha_inicio_contrato = $this->fecha_inicio_contrato;
     $personal->fecha_fin_contrato = $this->fecha_fin_contrato;
     $personal->save();
-    session()->flash('message', 'Datos actualizados!');
+    session()->flash('status', 'Datos actualizados!');
   }
   
    //función para retroceder

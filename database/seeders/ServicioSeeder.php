@@ -21,52 +21,51 @@ class ServicioSeeder extends Seeder
                 'nombre' => 'Clases de yoga',
                 'descripcion' => 'clases grupales de yoga',
                 'estado' => 'Activo',
-                
-                'tipo_id' => $tipoServicios->random(),
-               
+                'tipo_servicio_id' => 1,
+                //'tipo_servicio_id' => $tipoServicios->random(),
+
             ],
             //nro 2
             [
                 'nombre' => 'Alquiler de canchas',
                 'descripcion' => 'fjsdakfjasdlkfjklasdjfkasfjl',
-                'estado' => 'Activo',
-                
-                'tipo_id' => 3,
-            
+                'estado' => 'Inactivo',
+
+                'tipo_servicio_id' => 2,
+
             ],
             //nro 3
             [
                 'nombre' => 'Entrenamiento personal',
                 'descripcion' => 'fjasdkfljsdlkfjskldfjklsajf',
                 'estado' => 'Activo',
-                
-                'tipo_id' => 4,
-                
+
+                'tipo_servicio_id' => 3,
+
             ],
             //nro 4
             [
                 'nombre' => 'Clases de natacion',
                 'descripcion' => 'fjsdklfjsdklfjsdlñkfjasf',
                 'estado' => 'Activo',
-                
-                'tipo_id' => $tipoServicios->random(),
-    
-            ],
-           //nro 5
-           [
-            'nombre' => 'Acceso al gimnasio',
-            'descripcion' => 'asfskfksadlfkasdñflñsdk',
-            'estado' => 'Activo',
-           
-            'tipo_id' => 2,
 
-        ],
-           
+                'tipo_servicio_id' => 1,
+
+            ],
+            //nro 5
+            [
+                'nombre' => 'Acceso al gimnasio',
+                'descripcion' => 'asfskfksadlfkasdñflñsdk',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 4,
+
+            ],
+
         ];
-    
+
         foreach ($servicios as $servicio) {
             Servicio::create($servicio);
         }
-
     }
 }

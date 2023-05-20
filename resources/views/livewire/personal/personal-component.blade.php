@@ -78,10 +78,11 @@
 
                                             <a href="#" class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Eliminar"
-                                                data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $personal->id }}">
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-notification-{{ $personal->id }}">
                                                 Eliminar
-                                                <div class="modal fade" id="modal-notification-{{ $personal->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="modal-notification"
+                                                <div class="modal fade" id="modal-notification-{{ $personal->id }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="modal-notification"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-danger modal-dialog-centered modal-"
                                                         role="document">
@@ -120,6 +121,21 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if (session()->has('message') && $deletedPersonalId)
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="alert alert-success alert-dismissible text-white"
+                                                role="alert">
+                                                <span class="text-sm">{{ session('message') }}</span>
+                                                <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                                    data-bs-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
                         {{--

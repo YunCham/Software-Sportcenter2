@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Servicio;
 
 use Livewire\Component;
 use App\Models\Servicio;
+use App\Models\TipoServicio;
 use Livewire\WithFileUploads;
 
 class EditarServicioComponent extends Component
@@ -24,7 +25,7 @@ class EditarServicioComponent extends Component
         $this->nombre = $servicio->nombre;
         $this->descripcion = $servicio->descripcion;
         $this->estado = $servicio->estado;
-        $this->tipoServicio_id = $servicio->tipo_id;
+        $this->tipoServicio_id = $servicio->tipo_servicio_id;
     }
     public function updated($fields)
     {
@@ -45,9 +46,9 @@ class EditarServicioComponent extends Component
         $servicio->nombre = $this->nombre;
         $servicio->descripcion = $this->descripcion;
         $servicio->estado = $this->estado;
-        $servicio->tipo_id = $this->tipoServicio_id;
+        $servicio->tipo_servicio_id = $this->tipoServicio_id;
         $servicio->save();
-        session()->flash('message', 'Datos actualizados!');
+        session()->flash('status', 'Datos actualizados!');
     }
 
 
@@ -59,7 +60,7 @@ class EditarServicioComponent extends Component
     }
 
     public function render()
-    {
-        return view('livewire.servicio.editar-servicio-component');
+    {   $tservicios = TipoServicio::all();
+        return view('livewire.servicio.editar-servicio-component',compact('tservicios'));
     }
 }

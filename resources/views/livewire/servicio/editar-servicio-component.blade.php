@@ -51,7 +51,7 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-6">
+                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Estado</label>
                                 <select class="form-control border border-2 p-2" name="estado" id=""
                                     wire:model="estado">

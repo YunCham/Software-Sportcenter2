@@ -18,7 +18,7 @@ return new class extends Migration
       $table->string('nombre', 45);
       $table->string('apellidos');
       $table->date('fecha_nacimiento');
-      $table->boolean('genero');
+      $table->string('genero');
       $table->string('telefono', 20);
       $table->string('distrito', 35);
       $table->string('calle');

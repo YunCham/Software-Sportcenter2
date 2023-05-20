@@ -11,12 +11,13 @@ class TiposComponent extends Component
     use WithPagination;
      
     public $tservicio_id;
-    
+    public $deletedTservicioId;
     public function deleteTipoServicio($tservicio_id)
     {
         $tipoServicio = TipoServicio::find($tservicio_id);
         $tipoServicio->delete();
-        session()->flash('message','Registro elimidado exitosamente!');
+        $this->deletedTservicioId = $tservicio_id;
+        session()->flash('message', 'Registro eliminado exitosamente!');
     }
     public function render()
     {

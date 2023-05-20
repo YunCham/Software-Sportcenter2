@@ -25,7 +25,7 @@
                                         Estado</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Tipo</th>
-                                    
+
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
@@ -46,15 +46,16 @@
                                         </td>
                                         <td>
                                             <p class="text-xm font-weight-bold mb-0">{{ $servicio->descripcion }}</p>
-                                           
+
                                         </td>
                                         <td>
-                                            <p class="text-xm font-weight-bold mb-0">{{ $servicio->estado}}</p>
-                                           
+                                            <p class="text-xm font-weight-bold mb-0">{{ $servicio->estado }}</p>
+
                                         </td>
                                         <td>
-                                            <p class="text-xm font-weight-bold mb-0">{{ $servicio->tipo_servicio->nombre }}</p>
-                                           
+                                            <p class="text-xm font-weight-bold mb-0">
+                                                {{ $servicio->tipo_servicio->nombre }}</p>
+
                                         </td>
 
                                         <td class="align-middle">
@@ -111,6 +112,28 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if (session()->has('message') && $deletedServicioId)
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="alert alert-success alert-dismissible text-white"
+                                                role="alert">
+                                                <span class="text-sm">{{ session('message') }}</span>
+                                                <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                                    data-bs-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+
+
+
+
+
+
+
+
                             </tbody>
                         </table>
 

@@ -8,7 +8,7 @@ use Livewire\Component;
 class BrandComponent extends Component
 {
     
-  public $brands, $brand;
+  public $brands, $brand, $modalBrandId;
 
     protected $listeners = ['delete'];
 
@@ -34,8 +34,9 @@ class BrandComponent extends Component
         $this->getBrands();
     }
 
-    public function getBrands(){
-        $this->brands = Brand::all();
+    public function getBrands()
+    {
+        $this->brands = Brand::orderBy('name', 'asc')->take(18)->get();
     }
 
     public function save(){
@@ -50,15 +51,26 @@ class BrandComponent extends Component
         $this->brand = Brand::find($brandId);
         $this->editForm['open'] = true;
         $this->editForm['name'] = $this->brand->name;
+        $this->editForm['brandId'] = $brandId;
     }
     
+    public function goBack()
+    {
+        $this->redirect(route('marca.index'));
+    }
+
     public function update(){
         $this->validate([
             'editForm.name' => 'required'
         ]);
-        $this->brand->update($this->editForm);
-        $this->reset('editForm');
-        $this->getBrands();
+        if ($this->brand) {
+            $this->brand->update([
+                'name' => $this->editForm['name']
+            ]);
+    
+            $this->reset('editForm');
+            $this->getBrands();
+        }
     }
 
     public function delete($brandId)

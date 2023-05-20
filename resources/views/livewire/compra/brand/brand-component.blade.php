@@ -1,8 +1,7 @@
 <div class="py-2">
     {{-- Formulario crear --}}
-    <h2>Lista de marcas</h2>
-    <p>Encontrará todas las marcas agregadas</p>
-    <div style="display: flex; justify-content: center;" class="text-gray-600 mb-3">
+    <h2 class="text-center">Crear nueva Marca</h2>
+    <div style="margin-left: 2cm;" class="text-gray-600 mb-3">
         <form wire:submit.prevent="save" class="mb-4" style="width: 686px;">
             <div class="col-span-6 sm:col-span-4">
                 <label for="createName" style="font-size: 38px;">Nombre: </label>
@@ -13,7 +12,10 @@
         </form>
     </div>
     {{-- Lista de marcas --}}
+    
     <div class="card-body px-0 pb-2">
+        <h2 class="text-center">Lista de marcas</h2>
+        <p style="margin-left: 1cm;">Encontrará todas las marcas agregadas</p>
         <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
                 <thead>
@@ -30,16 +32,15 @@
                     @foreach ($brands as $brand)
                         <tr>
                             <td class="py-2">
-                                <a class="uppercase">
+                                <a class="uppercase" style="margin-left: 0.8cm;">
                                     {{$brand->name}}
                                 </a>
                             </td>
-                            <td class="py-2">
+                            <td class="align-middle">                 
                                 <div class="flex divide-x divide-gray-300 font-semibold">
                                     <button class="pr-8 hover:text-blue-600 cursor-pointer" wire:click="edit({{ $brand->id }})">Editar</button>
                                 </div>
                             </td>
-                            
                             <td class="align-middle">
                                 <a href="#" class="text-secondary font-weight-bold text-lg" data-toggle="tooltip" data-original-title="Eliminar"  data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $brand->id }}">
                                     Eliminar 
@@ -77,21 +78,46 @@
                                         </div>
                                     </div>
                                 </div>
+                            </td>              
+                            <td class="align-middle">
+                            </td>
+                            <td class="align-middle">
+                            </td>
+                            <td class="align-middle">
                             </td>
                         </tr>
+                        {{-- Modal editar --}}
+                        @if ($editForm['open'] && $editForm['brandId'] == $brand->id)
+                            <tr>
+                                <td colspan="2"  class="d-flex justify-content-center">
+                                    <div id="editForm_{{ $brand->id }}">
+                                        <h2>Editar Marca</h2>
+                                        <label for="editName">Nombre</label>
+                                        <input id="editName" type="text" wire:model="editForm.name" class="w-full mt-4"/>
+                                        @error('editForm.name') <span class="text-red-500">{{ $message }}</span> @enderror
+                                        <div class="mt-4">
+                                            <button wire:click="update" type="button" wire:loading.attr="disabled" wire:target="update" class="btn btn-secondary btn-sm">Actualizar</button>
+                                            <button wire:click="goBack" type="button" wire:loading.attr="disabled" wire:target="goBack" class="btn btn-primary btn-sm">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    {{-- Modal editar --}}
-    @if ($editForm['open'])
-        <div>
-            <h2>Editar Marca</h2>
-            <label for="editName">Nombre</label>
-            <input id="editName" type="text" wire:model="editForm.name" class="w-full" />
-            @error('editForm.name') <span class="text-red-500">{{ $message }}</span> @enderror
-            <button wire:click="update" type="button" wire:loading.attr="disabled" wire:target="update">Actualizar</button>
-        </div>
-    @endif
+    <script>
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('editFormOpen', function (brandId) {
+                var form = document.getElementById('editForm_' + brandId);
+                form.style.display = 'block';
+            });
+            Livewire.on('editFormClose', function (brandId) {
+                var form = document.getElementById('editForm_' + brandId);
+                form.style.display = 'none';
+            });
+        });
+    </script>   
 </div>

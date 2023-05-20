@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             'password' => ('secret')
         ]);
 
-        /*Storage::disk('public')->makeDirectory('categories');
+        Storage::disk('public')->makeDirectory('categories');
         Storage::disk('public')->makeDirectory('subcategories');
-        Storage::disk('public')->makeDirectory('products');*/
+        Storage::disk('public')->makeDirectory('products');
         $this->call(CategorySeeder::class);
         $this->call(SubcategorySeeder::class);
         $this->call(ProductSeeder::class);

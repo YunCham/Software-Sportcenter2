@@ -23,35 +23,38 @@ class RegistroProveedorComponent extends Component
             'phone' => 'required',
             'about' => 'required|max:100',
             'location' => 'required',
-            'tipo_proveedor' => 'required',    
-        ]);      
+            'tipo_proveedor' => 'required',
+            
+        ]);
+        
     }
     public function storeProveedor()
     {
-        $this->validate([
-           'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'about' => 'required|max:100',
-            'location' => 'required',
-            'tipo_proveedor' => 'required',
-        ]);
-        $proveedor = new Proveedor();
-        $proveedor->name = $this->name;
-        $proveedor->email = $this->email;
-        $proveedor->phone = $this->phone;
-        $proveedor->about = $this->about;
-        $proveedor->location = $this->location;
-        $proveedor->tipo_proveedor = $this->tipo_proveedor;
-        $proveedor->save();
-        session()->flash('message', 'Nuevo Personal registrado!');
+    $this->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required',
+        'about' => 'required|max:100',
+        'location' => 'required',
+        'tipo_proveedor' => 'required',
+    ]);
+    $proveedor = new proveedor();
+    $proveedor->name = $this->name;
+    $proveedor->email = $this->email;
+    $proveedor->phone = $this->phone;
+    $proveedor->about = $this->about;
+    $proveedor->location = $this->location;
+    $proveedor->tipo_proveedor = $this->tipo_proveedor;
+    $proveedor->save();
+    session()->flash('message', 'Nuevo Personal registrado!');
     }
 
-  public function goBack()
-  {
+    public function goBack()
+    {
       // Lógica adicional si es necesario
       $this->redirect(route('proveedor.index'));
-  }
+    }
+    
     public function render()
     {
         return view('livewire.compra.proveedor.registro-proveedor-component');

@@ -14,62 +14,61 @@ class EditarProveedorComponent extends Component
     public $proveedor_id;
     public $name;
     public $email;
-    public $phone;
-    public $about;
-    public $location;
-    public $tipo_proveedor;
+  public $phone;
+  public $about;
+  public $location;
+  public $tipo_proveedor;
 
-    public function mount($proveedor_id)
-    {
-    $proveedor = Proveedor::find($proveedor_id);
-    $this->proveedor_id = $proveedor->id;
-    $this->name = $proveedor->name;
-    $this->phone = $proveedor->phone;
-    $this->email = $proveedor->email;
-    $this->about = $proveedor->about;
-    $this->tipo_proveedor = $proveedor->tipo_proveedor;
-    
-    }
-    public function updated($fields)
-    {
-    $this->validateOnly($fields, [
-        'name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required',
-        'about' => 'required|max:100',
-        'location' => 'required',
-        'tipo_proveedor' => 'required'
-    ]);
-    }
-
-    
-  //implementacio de la funcion donde Edita los datos
-  public function updatePersonal()
+  public function mount($proveedor_id)
   {
-    $this->validate([
-        'name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required',
-        'about' => 'required|max:100',
-        'location' => 'required',
-        'tipo_proveedor' => 'required',
-    ]);
-    $proveedor = proveedor::find($this->proveedor_id);
-    $proveedor->name = $this->name;
-    $proveedor->email = $this->email;
-    $proveedor->phone = $this->phone;
-    $proveedor->about = $this->about;
-    $proveedor->location = $this->location;
-    $proveedor->tipo_proveedor = $this->tipo_proveedor;
-    $proveedor->save();
-    session()->flash('message', 'Nuevo Personal registrado!');
+  $proveedor = proveedor::find($proveedor_id);
+  $this->proveedor_id = $proveedor->id;
+  $this->name = $proveedor->name;
+  $this->phone = $proveedor->phone;
+  $this->email = $proveedor->email;
+  $this->about = $proveedor->about;
+  $this->tipo_proveedor = $proveedor->tipo_proveedor;
+  
+  }
+  public function updated($fields)
+  {
+  $this->validateOnly($fields, [
+      'name' => 'required',
+      'email' => 'required|email',
+      'phone' => 'required',
+      'about' => 'required|max:100',
+      'location' => 'required',
+      'tipo_proveedor' => 'required'
+  ]);
   }
 
-    public function goBack()
-    {
-       // Lógica adicional si es necesario
-       $this->redirect(route('proveedor.index'));
-    }
+//implementacio de la funcion donde Edita los datos
+public function updatePersonal()
+{
+  $this->validate([
+      'name' => 'required',
+      'email' => 'required|email',
+      'phone' => 'required',
+      'about' => 'required|max:100',
+      'location' => 'required',
+      'tipo_proveedor' => 'required',
+  ]);
+  $proveedor = proveedor::find($this->proveedor_id);
+  $proveedor->name = $this->name;
+  $proveedor->email = $this->email;
+  $proveedor->phone = $this->phone;
+  $proveedor->about = $this->about;
+  $proveedor->location = $this->location;
+  $proveedor->tipo_proveedor = $this->tipo_proveedor;
+  $proveedor->save();
+  session()->flash('message', 'Nuevo Personal registrado!');
+}
+
+  public function goBack()
+  {
+     // Lógica adicional si es necesario
+     $this->redirect(route('proveedor.index'));
+  }
 
     public function render()
     {

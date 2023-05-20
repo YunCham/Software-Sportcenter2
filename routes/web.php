@@ -10,6 +10,9 @@ use App\Http\Livewire\Compra\Brand\EditBrandComponent;
 use App\Http\Livewire\Compra\Brand\RegistroBrandComponent;
 use App\Http\Livewire\Compra\Brand\ShowBrandComponent;
 use App\Http\Livewire\Compra\Category\CategoryComponent;
+use App\Http\Livewire\Compra\Proveedor\EditarProveedorComponent;
+use App\Http\Livewire\Compra\Proveedor\ProveedorComponent;
+use App\Http\Livewire\Compra\Proveedor\RegistroProveedorComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
@@ -71,8 +74,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
     Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
     Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
-
+    // proovedor
+    Route::get('/compra/proveedor', ProveedorComponent::class)->name('proveedor.index');
+    Route::get('/compra/proveedor/registro', RegistroProveedorComponent::class)->name('proveedor-registro');
+    Route::get('/compra/proveedor/editar/{proveedor_id}', EditarProveedorComponent::class)->name('proveedor-editar');
+    // Marca
     Route::get('/compra/brand', BrandComponent::class)->name('marca.index');
+    Route::get('/compra/brand/registro', RegistroBrandComponent::class)->name('marca-registro');
     Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
     Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
 

@@ -9,7 +9,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-3">Datos personales</h6>
+                            <h6 class="mb-3">Datos Marcas</h6>
                         </div>
                     </div>
                 </div>
@@ -36,55 +36,20 @@
                             </div>
                         </div>
                     @endif
-                    <form wire:submit.prevent='updatePersonal'>
+                    {{-- alerta --}}
+                    @if (Session::has('message'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">{{ Session::get('message') }}
+                        </div>
+                    @endif
+                    <form wire:submit.prevent='storeBrand'>
                         <div class="row">
-
                             <div class="mb-3 col-md-6">
-
                                 <label class="form-label">Nombre</label>
                                 <input wire:model="name" type="text" class="form-control border border-2 p-2">
-                                @error('nanme')
+                                @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">email</label>
-                                <input wire:model="email" name="email" type="text" class="form-control border border-2 p-2">
-                                @error('email')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Telefono</label>
-                                <input wire:model="phone" type="text" class="form-control border border-2 p-2">
-                                @error('phone')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">ubicaion</label>
-                                <input wire:model="location" type="text" class="form-control border border-2 p-2">
-                                @error('location')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">infromacion</label>
-                                <input wire:model="about" type="text" class="form-control border border-2 p-2">
-                                @error('about')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">tipo de Proveedor</label>
-                                <input wire:model="tipo_proveedor" type="text" class="form-control border border-2 p-2">
-                                @error('tipo_proveedor')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>                           
                         </div>
                         <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                         <button type="submit" class="btn bg-gradient-dark">Guardar</button>

@@ -87,7 +87,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{route('marca.index')}}">Marca</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('categoria.index')}}">Categoria</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('perosnal.index')}}">Proveedor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('proveedor.index')}}">Proveedor</a></li>
                     </ul>
                 </div>
             </li>

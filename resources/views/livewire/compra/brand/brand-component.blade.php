@@ -39,32 +39,7 @@
                                     <button class="pr-8 hover:text-blue-600 cursor-pointer" wire:click="edit({{ $brand->id }})">Editar</button>
                                 </div>
                             </td>
-                            <td class="align-middle">
-                                <a href="#" class="text-secondary font-weight-bold text-lg" data-toggle="tooltip" 
-                                    data-original-title="Eliminar"  
-                                    data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $brand->id }}">
-                                    Editar 
-                                </a>
-                                <div class="modal fade" id="modal-notification-{{ $brand->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h6 class="modal-title font-weight-normal"
-                                                    id="modal-title-notification">Se requiere tu
-                                                    atención!!!</h6>
-                                                <button type="button" class="btn-close"
-                                                    data-bs-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-sm"
-                                                      data-bs-dismiss="modal">Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                            
                             <td class="align-middle">
                                 <a href="#" class="text-secondary font-weight-bold text-lg" data-toggle="tooltip" data-original-title="Eliminar"  data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $brand->id }}">
                                     Eliminar 

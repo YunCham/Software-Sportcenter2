@@ -6,7 +6,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
             <img src="{{ asset('assets') }}/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-2 font-weight-bold text-white">Material Dashboard 2 Laravel Livewire</span>
+            <span class="ms-2 font-weight-bold text-white">Centro Deportivo</span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -46,7 +46,6 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-
              <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('tables') }}">
@@ -76,7 +75,23 @@
                 </div>
             </li>
 
-
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }}" href="#" id="navbarDropdown2" role="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu2" aria-expanded="false" aria-controls="collapseMenu2">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Administrar Compras</span>
+                </a>
+                <div class="collapse" id="collapseMenu2">
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="{{route('marca.index')}}">Marca</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('categoria.index')}}">Categoria</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('perosnal.index')}}">Proveedor</a></li>
+                    </ul>
+                </div>
+            </li>
+            
             {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -93,7 +108,6 @@
                     </ul>
                 </div>
             </li> --}}
-            
             {{-- FIN Menu despegable de tablas --}}
 
             <li class="nav-item">

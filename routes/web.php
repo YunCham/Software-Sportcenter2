@@ -5,6 +5,11 @@ use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Billing;
+use App\Http\Livewire\Compra\Brand\BrandComponent;
+use App\Http\Livewire\Compra\Brand\EditBrandComponent;
+use App\Http\Livewire\Compra\Brand\RegistroBrandComponent;
+use App\Http\Livewire\Compra\Brand\ShowBrandComponent;
+use App\Http\Livewire\Compra\Category\CategoryComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
@@ -42,8 +47,6 @@ Route::get('/', function () {
 Route::get('forgot-password', ForgotPassword::class)->middleware('guest')->name('password.forgot');
 Route::get('reset-password/{id}', ResetPassword::class)->middleware('signed')->name('reset-password');
 
-
-
 Route::get('sign-up', Register::class)->middleware('guest')->name('register');
 Route::get('sign-in', Login::class)->middleware('guest')->name('login');
 
@@ -60,14 +63,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('static-sign-in', StaticSignIn::class)->name('static-sign-in');
     Route::get('static-sign-up', StaticSignUp::class)->name('static-sign-up');
     Route::get('rtl', RTL::class)->name('rtl');
-
     //mis rutas
     Route::get('/personal', PersonalComponent::class)->name('perosnal.index');
     Route::get('/personal/registro', RegistrarPersonalComponent::class)->name('personal-registro');
     Route::get('/personal/editar/{personal_id}', EditarPersonalComponent::class)->name('personal-editar');
-    
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
     Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
     Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
+
+    Route::get('/compra/brand', BrandComponent::class)->name('marca.index');
+    Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
+
+    Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
+
+    Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');
+
 });

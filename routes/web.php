@@ -24,9 +24,14 @@ use App\Http\Livewire\Usuario\UsuarioComponent;
 use App\Http\Livewire\VirtualReality;
 //para los tipos de servicios de la membresia
 use App\Http\Livewire\TpServicio\TiposComponent;
-
 use App\Http\Livewire\TpServicio\RegistrarComponent;
 use App\Http\Livewire\TpServicio\EditarComponent;
+
+//Para los servicios
+use App\Http\Livewire\Servicio\ServicioComponent;
+use App\Http\Livewire\Servicio\EditarServicioComponent;
+use App\Http\Livewire\Servicio\RegistrarServicioComponent;
+
 //aparte
 use GuzzleHttp\Middleware;
 
@@ -76,6 +81,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/tservicio', TiposComponent::class)->name('tservicio.index');
     Route::get('/tservicio/registrar', RegistrarComponent::class)->name('tservicio.registrar');
     Route::get('/tservicio/editar/{tservicio_id}', EditarComponent::class)->name('tservicio.editar');
+
+    //Servicios
+    Route::get('/servicio', ServicioComponent::class)->name('servicio.index');
+    Route::get('/servicio/registrar', RegistrarServicioComponent::class)->name('servicio.registrar');
+    Route::get('/servicio/editar/{servicio_id}', EditarServicioComponent::class)->name('servicio.editar');
 
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');

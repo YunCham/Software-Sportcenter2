@@ -15,12 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion')->nullable();
-            $table->string('estado');
-            $table->decimal('precio', 8, 2);
+            $table->string('estado')->default('inactivo');;
 
             $table->unsignedBigInteger('tipo_id');
             $table->foreign('tipo_id')->references('id')->on('tipo_servicios')->onDelete('cascade');
-
+            
             $table->timestamps();
         });
     }

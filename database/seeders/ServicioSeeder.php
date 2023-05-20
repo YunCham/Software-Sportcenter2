@@ -21,7 +21,7 @@ class ServicioSeeder extends Seeder
                 'nombre' => 'Clases de yoga',
                 'descripcion' => 'clases grupales de yoga',
                 'estado' => 'Activo',
-                'precio' => 10.99,
+                
                 'tipo_id' => $tipoServicios->random(),
                
             ],
@@ -30,7 +30,7 @@ class ServicioSeeder extends Seeder
                 'nombre' => 'Alquiler de canchas',
                 'descripcion' => 'fjsdakfjasdlkfjklasdjfkasfjl',
                 'estado' => 'Activo',
-                'precio' => 10.99,
+                
                 'tipo_id' => 3,
             
             ],
@@ -39,7 +39,7 @@ class ServicioSeeder extends Seeder
                 'nombre' => 'Entrenamiento personal',
                 'descripcion' => 'fjasdkfljsdlkfjskldfjklsajf',
                 'estado' => 'Activo',
-                'precio' => 20.99,
+                
                 'tipo_id' => 4,
                 
             ],
@@ -48,7 +48,7 @@ class ServicioSeeder extends Seeder
                 'nombre' => 'Clases de natacion',
                 'descripcion' => 'fjsdklfjsdklfjsdlñkfjasf',
                 'estado' => 'Activo',
-                'precio' => 30.99,
+                
                 'tipo_id' => $tipoServicios->random(),
     
             ],
@@ -57,7 +57,7 @@ class ServicioSeeder extends Seeder
             'nombre' => 'Acceso al gimnasio',
             'descripcion' => 'asfskfksadlfkasdñflñsdk',
             'estado' => 'Activo',
-            'precio' => 40.99,
+           
             'tipo_id' => 2,
 
         ],

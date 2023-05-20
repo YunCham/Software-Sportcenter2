@@ -9,7 +9,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-3">Datos del tipo de servicio</h6>
+                            <h6 class="mb-3">Datos del servicio</h6>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     @if (Session::has('message'))
                         <div class="alert alert-danger alert-dismissible" role="alert">{{ Session::get('message') }}</div>
                     @endif
-                    <form wire:submit.prevent='updateTipoServicio'>
+                    <form wire:submit.prevent='updateServicio'>
                         <div class="row">
 
                             <div class="mb-3 col-md-6">
@@ -51,7 +51,43 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Estado</label>
+                                <select class="form-control border border-2 p-2" name="estado" id=""
+                                    wire:model="estado">
+                                    <option value="">Selecione Estado</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                    @error('estado')
+                                        <p class='text-danger inputerror'>{{ $message }} </p>
+                                    @enderror
+
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Tipo</label>
+                                <select name="tipo_id" id="" class="form-control border border-2 p-2" wire:model="tipoServicio_id">
+                                    @foreach ($tservicios as $tservicio)
+                                        <option value="{{ $tservicio->id }}">{{ $tservicio->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3 col-md-12">
+
+                                <label for="floatingTextarea2">Descripcion</label>
+                                <textarea wire:model="descripcion" class="form-control border border-2 p-2" placeholder=" Say something about yourself"
+                                    id="floatingTextarea2" rows="4" cols="50"></textarea>
+                                @error('descripcion')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                            </div>
+                        
                         </div>
+                       
+                       
+                       
                         <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                         <button type="submit" class="btn bg-gradient-dark">Guardar</button>
                     </form>

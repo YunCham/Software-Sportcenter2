@@ -8,7 +8,7 @@
                     </div>
                     {{-- boton añadir --}}
                     <div class=" me-3 my-3 text-end">
-                        <a class="btn bg-gradient-dark mb-0" href="{{ route('tservicio.registrar') }}"><i
+                        <a class="btn bg-gradient-dark mb-0" href="{{ route('servicio.registrar') }}"><i
                                 class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a>
                     </div>
                 </div>
@@ -18,13 +18,19 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Nombre</th>                            
-                                                               
+                                        Nombre</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Descripcion</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Estado</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Tipo</th>
+                                    
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tservicios as $tservicio)
+                                @foreach ($servicios as $servicio)
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2 py-1">
@@ -33,15 +39,26 @@
                                                         class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{ $tservicio->nombre }}</h6>
-                                                   
+                                                    <h6 class="mb-0 text-sm">{{ $servicio->nombre }}</h6>
+
                                                 </div>
                                             </div>
                                         </td>
-
+                                        <td>
+                                            <p class="text-xm font-weight-bold mb-0">{{ $servicio->descripcion }}</p>
+                                           
+                                        </td>
+                                        <td>
+                                            <p class="text-xm font-weight-bold mb-0">{{ $servicio->estado}}</p>
+                                           
+                                        </td>
+                                        <td>
+                                            <p class="text-xm font-weight-bold mb-0">{{ $servicio->tipo_servicio->nombre }}</p>
+                                           
+                                        </td>
 
                                         <td class="align-middle">
-                                            <a href="{{ route('tservicio.editar', ['tservicio_id' => $tservicio->id]) }}"
+                                            <a href="{{ route('servicio.editar', ['servicio_id' => $servicio->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                 data-original-title="Edit user">
                                                 Editar
@@ -51,10 +68,11 @@
 
                                             <a href="#" class="text-secondary font-weight-bold text-xs"
                                                 data-toggle="tooltip" data-original-title="Eliminar"
-                                                data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $tservicio->id }}">
-                                                Eliminar    
-                                                <div class="modal fade" id="modal-notification-{{ $tservicio->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="modal-notification"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-notification-{{ $servicio->id }}">
+                                                Eliminar
+                                                <div class="modal fade" id="modal-notification-{{ $servicio->id }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="modal-notification"
                                                     aria-hidden="true">
                                                     <div class="modal-dialog modal-danger modal-dialog-centered modal-"
                                                         role="document">
@@ -71,7 +89,7 @@
                                                             <div class="modal-body">
                                                                 <div class="py-3 text-center">
                                                                     <i class="material-icons h1 text-secondary">
-                                                                        Eliminar tipo servicio
+                                                                        Eliminar servicio
                                                                     </i>
                                                                     <h4 class="text-gradient text-danger mt-4">Esta
                                                                         seguro!</h4>
@@ -80,7 +98,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button"
-                                                                    class="btn btn-primary btn-sm"wire:click="deleteTipoServicio({{ $tservicio->id }})">Eliminar</button>
+                                                                    class="btn btn-primary btn-sm"wire:click="deleteServicio({{ $servicio->id }})">Eliminar</button>
                                                                 <button type="button"
                                                                     class="btn btn-secondary btn-sm">Cancelar</button>
                                                                 </button>
@@ -95,9 +113,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                       
 
-                        {{ $tservicios->links() }}
+
+                        {{ $servicios->links() }}
                     </div>
                 </div>
             </div>

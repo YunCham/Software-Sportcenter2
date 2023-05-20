@@ -89,7 +89,7 @@
                 <div class="collapse" id="collapseMenuOtros">
                     <ul class="nav">
                         <li class="nav-item"><a class="nav-link" href="#">Membresias</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('servicio.index')}}">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('tservicio.index')}}">Tipos de servicios</a></li>
                     </ul>
                 </div>

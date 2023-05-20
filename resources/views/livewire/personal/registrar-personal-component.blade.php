@@ -125,7 +125,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Numeor de Domicilio</label>
+                                <label class="form-label">Numero de Domicilio</label>
                                 <input wire:model="n_casa" type="text" class="form-control border border-2 p-2">
                                 @error('n_casa')
                                     <p class='text-danger inputerror'>{{ $message }} </p>

@@ -10,9 +10,11 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
 use App\Http\Livewire\Notifications;
+//Para el personal
 use App\Http\Livewire\Personal\EditarPersonalComponent;
 use App\Http\Livewire\Personal\PersonalComponent;
 use App\Http\Livewire\Personal\RegistrarPersonalComponent;
+//aparte
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\RTL;
 use App\Http\Livewire\StaticSignIn;
@@ -20,6 +22,12 @@ use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Tables;
 use App\Http\Livewire\Usuario\UsuarioComponent;
 use App\Http\Livewire\VirtualReality;
+//para los tipos de servicios de la membresia
+use App\Http\Livewire\TpServicio\TiposComponent;
+
+use App\Http\Livewire\TpServicio\RegistrarComponent;
+use App\Http\Livewire\TpServicio\EditarComponent;
+//aparte
 use GuzzleHttp\Middleware;
 
 /*
@@ -63,7 +71,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/personal', PersonalComponent::class)->name('perosnal.index');
     Route::get('/personal/registro', RegistrarPersonalComponent::class)->name('personal-registro');
     Route::get('/personal/editar/{personal_id}', EditarPersonalComponent::class)->name('personal-editar');
-    
+
+    //Tipos de servicios para la membresia
+    Route::get('/tservicio', TiposComponent::class)->name('tservicio.index');
+    Route::get('/tservicio/registrar', RegistrarComponent::class)->name('tservicio.registrar');
+    Route::get('/tservicio/editar/{tservicio_id}', EditarComponent::class)->name('tservicio.editar');
+
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
 });

@@ -63,7 +63,7 @@ class EditarPersonalComponent extends Component
     ]);
   }
 
-  //implementacio de la funcion donde Edita los datos
+  //implementacion de la funcion donde Edita los datos
   public function updatePersonal()
   {
     $this->validate([

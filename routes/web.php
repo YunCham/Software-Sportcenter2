@@ -83,7 +83,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/compra/brand', BrandComponent::class)->name('marca.index');
     Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
-
     Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
 
     Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');

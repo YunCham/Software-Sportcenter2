@@ -64,7 +64,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
-                    <span class="nav-link-text ms-1">Tables</span>
+                    <span class="nav-link-text ms-1">Usuario</span>
                 </a>
                 <div class="collapse" id="collapseMenu">
                     <ul class="nav">
@@ -109,6 +109,55 @@
                 </div>
             </li> --}}
             {{-- FIN Menu despegable de tablas --}}
+
+                 {{-- Menu despegable de servicio --}}
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'tiposervicio' ? ' active bg-gradient-primary' : '' }}"
+                        href="#" id="navbarDropdown" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseMenu2" aria-expanded="false" aria-controls="collapseMenu2">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">table_view</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Servicio</span>
+                    </a>
+                    <div class="collapse" id="collapseMenu2">
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="{{route('servicio')}}">Servicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('tiposervicio-registro')}}">Tipo de servicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Usuario</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                
+                {{-- FIN Menu despegable de servicio --}}
+
+            {{-- FIN Menu despegable de tablas --}}
+
+                 {{-- Menu despegable de Membresia --}}
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'membresia' ? ' active bg-gradient-primary' : '' }}"
+                        href="#" id="navbarDropdown" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseMenu10" aria-expanded="false" aria-controls="collapseMenu10">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">table_view</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Membresia</span>
+                    </a>
+                    <div class="collapse" id="collapseMenu10">
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="{{route('membresia')}}">Membresia</a></li>
+                            {{-- <li class="nav-item"><a class="nav-link" href="#"">Tipo de servicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Usuario</a></li> --}}
+                        </ul>
+                    </div>
+                </li>
+
+                
+                {{-- FIN Menu despegable de Membresia --}}
+
+
+
 
             <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'billing' ? ' active bg-gradient-primary' : '' }}  "

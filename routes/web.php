@@ -32,6 +32,11 @@ use App\Http\Livewire\Servicio\ServicioComponent;
 use App\Http\Livewire\Servicio\EditarServicioComponent;
 use App\Http\Livewire\Servicio\RegistrarServicioComponent;
 
+//Para las membresias
+use App\Http\Livewire\Membresia\MembresiaComponent;
+use App\Http\Livewire\Membresia\RegistrarMembresiaComponent;
+use App\Http\Livewire\Membresia\EditarMembresiaComponent;
+
 //aparte
 use GuzzleHttp\Middleware;
 
@@ -82,10 +87,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/tservicio/registrar', RegistrarComponent::class)->name('tservicio.registrar');
     Route::get('/tservicio/editar/{tservicio_id}', EditarComponent::class)->name('tservicio.editar');
 
-    //Servicios
+    //Servicios para la membresia
     Route::get('/servicio', ServicioComponent::class)->name('servicio.index');
     Route::get('/servicio/registrar', RegistrarServicioComponent::class)->name('servicio.registrar');
     Route::get('/servicio/editar/{servicio_id}', EditarServicioComponent::class)->name('servicio.editar');
+
+    //Membresias
+    Route::get('/membresias', MembresiaComponent::class)->name('membresia');
+    Route::get('/membresia/registrar',RegistrarMembresiaComponent::class)->name('membresia-registrar');
+    Route::get('/membresia/editar/{membresia_id}',EditarMembresiaComponent::class)->name('membresia-editar');
 
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');

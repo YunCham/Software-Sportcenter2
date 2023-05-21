@@ -17,7 +17,7 @@ class TiposComponent extends Component
         $tipoServicio = TipoServicio::find($tservicio_id);
         $tipoServicio->delete();
         $this->deletedTservicioId = $tservicio_id;
-        session()->flash('message', 'Registro eliminado exitosamente!');
+      /*  session()->flash('message', 'Registro eliminado exitosamente!');*/
     }
     public function render()
     {

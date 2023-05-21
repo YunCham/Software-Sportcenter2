@@ -13,7 +13,7 @@ class ServicioComponent extends Component
         $servicio = Servicio::find($servicio_id);
         $servicio->delete();
         $this->deletedServicioId = $servicio_id;
-        session()->flash('message', 'Registro eliminado exitosamente!');
+      /*  session()->flash('message', 'Registro eliminado exitosamente!');*/
     }
 
 

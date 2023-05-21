@@ -106,7 +106,7 @@
                 </a>
                 <div class="collapse" id="collapseMenuOtroDesplegable">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Membresia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('membresia')}}">Membresia</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Transaccion</a></li>
                     </ul>
                 </div>

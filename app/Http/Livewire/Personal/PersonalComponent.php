@@ -10,14 +10,14 @@ class PersonalComponent extends Component
 {
   use WithPagination;
 
-  public $personal_id;
+
   public $deletedPersonalId;
   public function deletePersonal($personal_id)
   {
-      $personal = Personal::find($personal_id);
-      $personal->delete();
-      $this->deletedPersonalId = $personal_id;
-        session()->flash('message', 'Registro eliminado exitosamente!');
+    $personal = Personal::find($personal_id);
+    $personal->delete();
+    $this->deletedPersonalId = $personal_id;
+   /* session()->flash('message', 'Registro eliminado exitosamente!');*/
   }
 
   public function render()

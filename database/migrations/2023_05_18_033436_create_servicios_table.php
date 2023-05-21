@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion')->nullable();
-            $table->string('estado')->default('inactivo');;
+            $table->string('estado')->default('inactivo');
 
             $table->unsignedBigInteger('tipo_servicio_id');
             $table->foreign('tipo_servicio_id')->references('id')->on('tipo_servicios')->onDelete('cascade');

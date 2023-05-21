@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
+use App\Http\Livewire\Inventario\InventarioComponent;
 use App\Http\Livewire\Notifications;
 use App\Http\Livewire\Personal\EditarPersonalComponent;
 use App\Http\Livewire\Personal\PersonalComponent;
@@ -76,4 +77,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/proveedor/registro', RegistroProveedorComponent::class)->name('proveedor-registro');
     Route::get('/proveedor/editar/{proveedor_id}', EditarProveedorComponent::class)->name('proveedor-editar');
 
+    // inventario
+    Route::get('/inventario', InventarioComponent::class)->name('inventario.index');
 });

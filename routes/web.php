@@ -10,6 +10,7 @@ use App\Http\Livewire\Compra\Brand\EditBrandComponent;
 use App\Http\Livewire\Compra\Brand\RegistroBrandComponent;
 use App\Http\Livewire\Compra\Brand\ShowBrandComponent;
 use App\Http\Livewire\Compra\Category\CategoryComponent;
+use App\Http\Livewire\Compra\Category\CreateCategory;
 use App\Http\Livewire\Compra\Proveedor\EditarProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\ProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\RegistroProveedorComponent;
@@ -83,7 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/brand/registro', RegistroBrandComponent::class)->name('marca-registro');
     Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
     Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
-
+    
     Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');
-
+    Route::get('/compra/category/registro', CreateCategory::class)->name('categoria-registro');
+    Route::get('/compra/category/editar/{category_id}', EditBrandComponent::class)->name('categoria-editar');
+    Route::get('compra/category/{category}', ShowBrandComponent::class)->name('categoria.show');
+  
 });

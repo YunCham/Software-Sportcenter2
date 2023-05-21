@@ -74,7 +74,7 @@
                     </ul>
                 </div>
             </li>
-
+            {{-- Menu despegable de Administrar Compras --}}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }}" href="#" id="navbarDropdown2" role="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu2" aria-expanded="false" aria-controls="collapseMenu2">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -88,6 +88,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{route('categoria.index')}}">Categoria</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('proveedor.index')}}">Proveedor</a></li>
+                    
                     </ul>
                 </div>
             </li>

@@ -3,103 +3,91 @@
 namespace App\Http\Livewire\Compra\Category;
 
 use Livewire\Component;
-use App\Models\Product;
 use App\Models\Subcategory;
-use Illuminate\Database\Eloquent\Builder;
-use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Image;
-use Illuminate\Support\Facades\Storage;
-
+use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 
 class CreateCategory extends Component
 {
-    public $product, $categories, $subcategories, $brands, $slug;
-    public $category_id;
+    use WithFileUploads;
 
-    protected $rules = [
-        'category_id' => 'required',
-        'product.subcategory_id' => 'required',
-        'product.name' => 'required',
-        'slug' => 'required|unique:products,slug',
-        'product.description' => 'required',
-        'product.brand_id' => 'required',
-        'product.price' => 'required',
-        'product.quantity' => 'numeric',
+    public $category;
+    public $subcategories;
+    public $name;
+    public $slug;
+    public $icon;
+
+    public $createForm = [
+        'name' => null,
+        'slug' => null,
+        'color' => false,
+        'size' => false
     ];
 
-    protected $listeners = ['refreshProduct', 'delete'];
-    
-    public function mount(Product $product){
-        $this->product = $product;
-        $this->categories = Category::all();
-       // $this->category_id = $product->subcategory->category->id;
-        $this->subcategories = Subcategory::where('category_id', $this->category_id)->get();
-        $this->slug = $this->product->slug;
-        $this->brands = Brand::whereHas('categories', function(Builder $query){
-            $query->where('category_id', $this->category_id);
-        })->get();
+    public function mount()
+    {
+        $this->category = new Category();
     }
 
-    public function refreshProduct(){
-        $this->product = $this->product->fresh();
+    public function updated($field)
+    {
+        $this->validateOnly($field, [
+            'name' => 'required',
+            'slug' => 'required|unique:subcategories,slug',
+        ]);
     }
 
-    public function updatedProductName($value){
-        $this->slug = Str::slug($value);
-    }
-
-    public function updatedCategoryId($value){
-        $this->subcategories = Subcategory::where('category_id', $value)->get();
-
-        $this->brands = Brand::whereHas('categories', function(Builder $query) use ($value){
-            $query->where('category_id', $value);
-        })->get();
-        /* $this->reset(['subcategory_id', 'brand_id']); */
-        $this->product->subcategory_id = "";
-        $this->product->brand_id = "";
-    }
-
-    public function getSubcategoryProperty(){
-        return Subcategory::find($this->product->subcategory_id);
-    }
     public function goBack()
     {
-        $this->redirect(route('marca.index'));
+        return redirect()->route('categoria.index');
+    }
+
+    public function getSubcategories()
+    {
+        $this->subcategories = Subcategory::where('category_id', $this->category->id)->get();
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es requerido.',
+            'name.alpha' => 'El nombre solo puede contener letras y espacios.',
+            'slug.required' => 'El slug es requerido.',
+            'slug.unique' => 'El slug ya está en uso.',
+            'icon.required' => 'El icono es requerido.',
+        ];
+    }
+
+    public function filterSpecialCharacters()
+    {
+        $this->name = preg_replace('/[^\p{L}\p{N}\s]/u', '', $this->name);
+    }
+
+    public function storeBrand()
+    {
+        $this->validate([
+            'name' => 'required',
+            'slug' => 'required|unique:subcategories,slug',
+            'icon' => 'required',
+        ]);
+        
+        $category = new Category();
+        $category->name = $this->name;
+        $category->slug = $this->slug;
+        $category->icon = $this->icon ?? ''; // Asignar una cadena vacía si el campo es nulo
+        $category->save();
+        $this->category->subcategories()->create($this->createForm);
+        $this->reset('createForm');
+        session()->flash('message', 'Nueva Marca registrada!');
+        return redirect()->route('categoria.index');
+    }
+
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
     }
     
-    public function save(){
-        $rules = $this->rules;
-        $rules['slug'] = 'required|unique:products,slug,' . $this->product->id;
-
-        if ($this->product->subcategory_id) {
-            if (!$this->subcategory->color && !$this->subcategory->size) {
-                $rules['product.quantity'] = 'required|numeric';
-            }
-        }
-        $this->validate($rules);
-        $this->product->slug = $this->slug;
-        $this->product->save();
-        $this->emit('saved');
-    }
-
-    public function deleteImage(Image $image){
-        Storage::delete([$image->url]);
-        $image->delete();
-        $this->product = $this->product->fresh();
-    }
-
-    public function delete(){
-        $images = $this->product->images;
-        foreach ($images as $image) {
-            Storage::delete($image->url);
-            $image->delete();
-        }
-        $this->product->delete();
-        return redirect()->route('admin.index');
-    }
-
     public function render()
     {
         return view('livewire.compra.category.create-category');

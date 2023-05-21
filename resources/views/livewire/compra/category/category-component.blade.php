@@ -1,64 +1,99 @@
 <div>
-    <div class="col-span-6 sm:col-span-4">
-        <label for="name">Nombre</label>
-        <input wire:model="createForm.name" type="text" id="name" class="w-full mt-1" />
-        @error('createForm.name') <span class="text-red-500">{{ $message }}</span> @enderror
-    </div>
-    <div class="col-span-6 sm:col-span-4">
-        <label for="slug">Slug</label>
-        <input disabled wire:model="createForm.slug" type="text" id="slug" class="w-full mt-1 bg-gray-100" />
-        @error('createForm.slug') <span class="text-red-500">{{ $message }}</span> @enderror
-    </div>
-    <div class="col-span-6 sm:col-span-4">
-        <label for="icon">Ícono</label>
-        <input wire:model.defer="createForm.icon" type="text" id="icon" class="w-full mt-1" />
-        @error('createForm.icon') <span class="text-red-500">{{ $message }}</span> @enderror
-    </div>
-    <div class="col-span-6 sm:col-span-4">
-        <label>Marcas</label>
-        <div class="grid grid-cols-4">
-            @foreach ($brands as $brand)                        
-                <label>
-                    <input wire:model.defer="createForm.brands" name="brands[]" value="{{$brand->id}}" type="checkbox" />
-                    {{$brand->name}}
-                </label>
-            @endforeach
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Historial de las Categoria</h6>
+                    </div>
+                    {{-- boton añadir --}}
+                    <div class="me-3 my-3 text-end">    
+                        <a class="btn bg-gradient-dark mb-0" href="{{ route('categoria-registro') }}"><i
+                              class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Nombre de la Categoria</th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">{{ $category->name }}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                      <td>
+                                          <a href="" class="text-orange-500 hover:text-orange-400 hover:underline ml-2 font-semibold">Ver más</a>
+                                      </td>                                
+                                      <td class="align-middle">
+                                          <a href="{{ route('categoria-editar', ['category_id' => $category->id]) }}"
+                                              class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                                              data-original-title="Edit user">
+                                              Editar
+                                          </a>
+                                      </td>
+                                      <td class="align-middle">
+                                          <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Eliminar"
+                                                data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $category->id }}">
+                                                Eliminar
+                                          </a>
+                                            <div class="modal fade" id="modal-notification-{{ $category->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                                                <div class="modal-dialog modal-danger modal-dialog-centered modal-"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h6 class="modal-title font-weight-normal"
+                                                                id="modal-title-notification">Se requiere tu
+                                                                atención!!!</h6>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="py-3 text-center">
+                                                                <i class="material-icons h1 text-secondary">
+                                                                    Eliminar Marca
+                                                                </i>
+                                                                <h4 class="text-gradient text-danger mt-4">¿Estás
+                                                                    seguro?</h4>
+                                                                <p>Paso a Paso</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button"
+                                                                class="btn btn-primary btn-sm"
+                                                                wire:click="deleteCategoria({{ $category->id }})">Eliminar
+                                                                Marca</button>
+                                                            <button type="button"
+                                                                class="btn btn-secondary btn-sm"
+                                                                data-bs-dismiss="modal">Cancelar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $categories->links() }}
+                    </div>
+                </div>
+            </div>
         </div>
-        @error('createForm.brands') <span class="text-red-500">{{ $message }}</span> @enderror
     </div>
-    <div class="col-span-6 sm:col-span-4">
-        <label for="image">Imagen</label>
-        <input wire:model="createForm.image" accept="image/*" type="file" class="mt-1" id="image" />
-        @error('createForm.image') <span class="text-red-500">{{ $message }}</span> @enderror
-    </div>
-</div>
-<div>
-    <table class="text-gray-600">
-        <thead class="border-b border-gray-300">
-            <tr class="text-left">
-                <th class="py-2 w-full">Nombre</th>
-                <th class="py-2">Acción</th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-300">
-            @foreach ($categories as $category)
-                <tr>
-                    <td class="py-2">
-                        <span class="inline-block w-8 text-center mr-2">
-                            {!!$category->icon!!}
-                        </span>
-                        <a href="{{route('admin.categories.show', $category)}}" class="uppercase underline hover:text-blue-600">
-                            {{$category->name}}
-                        </a>
-                    </td>
-                    <td class="py-2">
-                        <div class="flex divide-x divide-gray-300 font-semibold">
-                            <a class="pr-2 hover:text-blue-600 cursor-pointer" wire:click="edit('{{$category->slug}}')">Editar</a>
-                            <a class="pl-2 hover:text-red-600 cursor-pointer" wire:click="$emit('deleteCategory', '{{$category->slug}}')">Eliminar</a>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+  </div>
+  

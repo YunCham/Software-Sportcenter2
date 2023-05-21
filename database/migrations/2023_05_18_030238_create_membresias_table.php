@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('estado');
             $table->decimal('precio', 8, 2);
-            $table->date('fecha_inicio');
-            $table->date('fecha_vencimiento'); 
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_vencimiento')->nullable(); 
             $table->timestamps();
         });
     }

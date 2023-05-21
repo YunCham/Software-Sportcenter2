@@ -65,7 +65,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
-                    <span class="nav-link-text ms-1">Personas</span>
+                    <span class="nav-link-text ms-1">Usuarios</span>
                 </a>
                 <div class="collapse" id="collapseMenu">
                     <ul class="nav">
@@ -76,7 +76,7 @@
                 </div>
             </li>
             
-            {{-- Modulo de membresias y servicios --}}
+            {{-- Modulo de  servicios --}}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'otros' ? ' active bg-gradient-primary' : '' }}"
                     href="#" id="otrosDropdown" role="button" data-bs-toggle="collapse"
@@ -84,18 +84,34 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
-                    <span class="nav-link-text ms-1">Membresia y Servicio</span>
+                    <span class="nav-link-text ms-1">Servicios</span>
                 </a>
                 <div class="collapse" id="collapseMenuOtros">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Membresias</a></li>
+                        
                         <li class="nav-item"><a class="nav-link" href="{{route('servicio.index')}}">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('tservicio.index')}}">Tipos de servicios</a></li>
                     </ul>
                 </div>
             </li>
+            {{-- Modulo de membresias y transacciones --}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'otroDesplegable' ? ' active bg-gradient-primary' : '' }}"
+                    href="#" id="otroDesplegableDropdown" role="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseMenuOtroDesplegable" aria-expanded="false" aria-controls="collapseMenuOtroDesplegable">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Membresias</span>
+                </a>
+                <div class="collapse" id="collapseMenuOtroDesplegable">
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Membresia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Transaccion</a></li>
+                    </ul>
+                </div>
+            </li>
             
-          
             {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

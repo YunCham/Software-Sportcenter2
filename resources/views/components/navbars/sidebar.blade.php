@@ -6,7 +6,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
             <img src="{{ asset('assets') }}/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-2 font-weight-bold text-white">Centro Deportivo</span>
+            <span class="ms-2 font-weight-bold text-white">FITNET Sports Center </span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -72,6 +72,42 @@
                         <li class="nav-item"><a class="nav-link" href="{{route('categoria.index')}}">Categoria</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Proveedor</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+            {{-- Modulo de  servicios --}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'otros' ? ' active bg-gradient-primary' : '' }}"
+                    href="#" id="otrosDropdown" role="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseMenuOtros" aria-expanded="false" aria-controls="collapseMenuOtros">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Servicios</span>
+                </a>
+                <div class="collapse" id="collapseMenuOtros">
+                    <ul class="nav">
+                        
+                        <li class="nav-item"><a class="nav-link" href="{{route('servicio.index')}}">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('tservicio.index')}}">Tipos de servicios</a></li>
+                    </ul>
+                </div>
+            </li>
+            {{-- Modulo de membresias y transacciones --}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'otroDesplegable' ? ' active bg-gradient-primary' : '' }}"
+                    href="#" id="otroDesplegableDropdown" role="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseMenuOtroDesplegable" aria-expanded="false" aria-controls="collapseMenuOtroDesplegable">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">table_view</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Membresias</span>
+                </a>
+                <div class="collapse" id="collapseMenuOtroDesplegable">
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="{{route('membresia')}}">Membresia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Transaccion</a></li>
                     </ul>
                 </div>
             </li>

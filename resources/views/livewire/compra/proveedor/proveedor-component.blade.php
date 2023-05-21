@@ -90,15 +90,29 @@
                                                        </button>
                                                       </div>
                                                     </div>
-                                                  </div>
                                                 </div>
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if (session()->has('message') && $deletedPersonalId)
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="alert alert-success alert-dismissible text-white"
+                                                role="alert">
+                                                <span class="text-sm">{{ session('message') }}</span>
+                                                <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                                    data-bs-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
-{{--
+                        {{--
                         <nav aria-label="Page navigation example">
                           <ul class="pagination justify-content-end">
                         

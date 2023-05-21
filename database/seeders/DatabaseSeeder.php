@@ -68,6 +68,7 @@ class DatabaseSeeder extends Seeder
         foreach ($usuarios as $usuario) {
             User::create($usuario);
         }
+        $this->call(PersonalSeeder::class);
         $this->call(MembresiaSeeder::class);
         $this->call(TipoServicioSeeder::class);
         $this->call(ServicioSeeder::class);

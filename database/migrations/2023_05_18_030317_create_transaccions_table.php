@@ -19,6 +19,9 @@ return new class extends Migration
             $table->decimal('monto', 8, 2);
             $table->string('tipo');
             $table->timestamps();
+            
+            $table->date('membresia_inicio')->nullable();
+            $table->date('membresia_vencimiento')->nullable();
 
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');

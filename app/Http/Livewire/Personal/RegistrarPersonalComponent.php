@@ -23,6 +23,7 @@ class RegistrarPersonalComponent extends Component
   public $salario;
   public $fecha_inicio_contrato;
   public $fecha_fin_contrato;
+  public $estado;
 
 
 
@@ -40,7 +41,8 @@ class RegistrarPersonalComponent extends Component
       'calle' => 'required',
       'n_casa' => 'required|numeric|regex:/^\d+$/',
       'fecha_inicio_contrato' => 'required',
-      'fecha_fin_contrato' => 'required'
+      'fecha_fin_contrato' => 'required',
+      'estado' => 'required'
     ], [
       'n_casa.regex' => 'El número de casa debe ser un valor numérico sin puntos decimales.',
       'salario.regex' => 'El salario debe ser un valor decimal válido con hasta 10 dígitos enteros y hasta 2 dígitos decimales.'
@@ -61,7 +63,8 @@ class RegistrarPersonalComponent extends Component
       'calle' => 'required',
       'n_casa' => 'required|numeric|regex:/^\d+$/',
       'fecha_inicio_contrato' => 'required',
-      'fecha_fin_contrato' => 'required'
+      'fecha_fin_contrato' => 'required',
+      'estado' => 'required'
     ], [
       'n_casa.regex' => 'El número de casa debe ser un valor numérico sin puntos decimales.',
       'salario.regex' => 'El salario debe ser un valor decimal válido con hasta 10 dígitos enteros y hasta 2 dígitos decimales.'
@@ -80,6 +83,7 @@ class RegistrarPersonalComponent extends Component
     $personal->salario = $this->salario;
     $personal->fecha_inicio_contrato = $this->fecha_inicio_contrato;
     $personal->fecha_fin_contrato = $this->fecha_fin_contrato;
+    $personal->estado = $this->estado;
     $personal->save();
     session()->flash('status', 'Nuevo PERSONAL registrado!');
   }

@@ -61,6 +61,89 @@ class ServicioSeeder extends Seeder
                 'tipo_servicio_id' => 4,
 
             ],
+            //EXTRAS
+            //nro 6
+            [
+                'nombre' => 'Clases grupales de fitness',
+                'descripcion' => 'aerobicos,zumbas,pilates,yoga',
+                'estado' => 'Inactivo',
+
+                'tipo_servicio_id' => 1,
+
+            ],
+            //nro 7
+            [
+                'nombre' => 'Entrenamiento de fuerza',
+                'descripcion' => 'fadsfjsakljfklasdj',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 7,
+
+            ],
+            //nro 8
+            [
+                'nombre' => 'Piscina',
+                'descripcion' => 'natacion,entrenamiento acuatico',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 9,
+
+            ],
+            //nro 9
+            [
+                'nombre' => 'Canchas deportivas',
+                'descripcion' => 'tenis,baloncesto,futbol',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 4,
+
+            ],
+            //nro 10
+            [
+                'nombre' => 'Clases de artes marciales',
+                'descripcion' => 'karate,judo,taekwondo',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 10,
+
+            ],
+            //nro 11
+            [
+                'nombre' => 'Spa y masajes deportivos',
+                'descripcion' => 'jfklasdjfklsdjfklsdjalñfj',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 7,
+
+            ],
+            //nro 12
+            [
+                'nombre' => 'Actividades al aire libre',
+                'descripcion' => 'senderismo,ciclismo,carreras',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 11,
+
+            ],
+             //nro 13
+             [
+                'nombre' => 'Nutricion y asesoramiento',
+                'descripcion' => 'jfaksdljlfsdaklfasdjfklafa',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 8,
+
+            ],
+            //nro 14
+            [
+                'nombre' => 'Rehabilitacion y fisioterapia',
+                'descripcion' => 'jfaksdljlfsdaklfasdjfklafa',
+                'estado' => 'Activo',
+
+                'tipo_servicio_id' => 8,
+
+            ],
+
 
         ];
 

@@ -30,6 +30,9 @@
                                         Sueldo</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Estado</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Fin de Contrato</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
@@ -60,8 +63,16 @@
                                                 {{ $personal->fecha_inicio_contrato }}</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">{{ $personal->salario }}
-                                                bs.</span>
+                                            <p class="text-xm font-weight-bold mb-0">{{ $personal->salario }} bs.</p>
+                                        </td>
+                                        <td>
+                                            <p class="align-middle text-center text-sm">
+                                                @if ($personal->estado == 'Activo')
+                                                <span class="badge badge-sm bg-gradient-success">Activo</span>
+                                                @else
+                                                <span class="badge badge-sm bg-gradient-secondary">Desactivo</span>
+                                                @endif
+                                            </p>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span

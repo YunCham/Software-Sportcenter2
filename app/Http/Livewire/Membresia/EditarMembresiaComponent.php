@@ -40,6 +40,7 @@ class EditarMembresiaComponent extends Component
             'nombre' => 'required',
             'precio' => 'required',
             'estado' => 'required',
+            'selectedServicios' => 'required',
            /* 'fecha_inicio' => 'required',
             'fecha_fin' => 'required'*/
         ]);

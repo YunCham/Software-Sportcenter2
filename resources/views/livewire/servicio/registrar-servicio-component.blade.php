@@ -64,10 +64,14 @@
                                 <label class="form-label">Tipo</label>
                                 <select name="tipo_id" id="" class="form-control border border-2 p-2"
                                     wire:model="tipoServicio_id">
+                                    <option value="">Selecione tipo de servicio</option>
                                     @foreach ($tservicios as $tservicio)
                                         <option value="{{ $tservicio->id }}">{{ $tservicio->nombre }}</option>
                                     @endforeach
                                 </select>
+                                @error('tipoServicio_id')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
                             </div>
 
                             <div class="mb-3 col-md-12">

@@ -62,11 +62,12 @@
                                             <option value="">Selecione Estado</option>
                                             <option value="Activo">Activo</option>
                                             <option value="Desactivo">Desactivo</option>
-                                            @error('estado')
-                                                <p class='text-danger inputerror'>{{ $message }} </p>
-                                            @enderror
+
 
                                         </select>
+                                        @error('estado')
+                                            <p class='text-danger inputerror'>{{ $message }} </p>
+                                        @enderror
                                     </div>
                                     {{-- <div class="col">
                                         <label class="form-label">Inicio de membresia</label>
@@ -158,15 +159,24 @@
 
                             <div>
                                 <div class="form-check">
-                                    @foreach ($servicios as $servicio)
-                                        <input class="form-check-input" type="checkbox" value="{{ $servicio->id }}"
-                                            id="servicio_{{ $servicio->id }}" wire:model="selectedServicios"
-                                            {{ in_array($servicio->id, $selectedServicios) ? 'checked' : '' }}>
-                                        <label class="form-check-label"
-                                            for="servicio_{{ $servicio->id }}">{{ $servicio->nombre }}</label>
-                                    @endforeach
+                                    <ul class="list-group">
+                                        @foreach ($servicios as $servicio)
+                                            <li class="list-group-item">
+                                                <input class="form-check-input" type="checkbox"
+                                                    value="{{ $servicio->id }}" id="servicio_{{ $servicio->id }}"
+                                                    wire:model="selectedServicios"
+                                                    {{ in_array($servicio->id, $selectedServicios) ? 'checked' : '' }}>
+                                                <label class="form-check-label"
+                                                    for="servicio_{{ $servicio->id }}">{{ $servicio->nombre }}</label>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    @error('selectedServicios')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
+
 
 
                             {{-- <div class="mb-3 col-md-6">

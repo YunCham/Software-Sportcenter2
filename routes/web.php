@@ -11,6 +11,10 @@ use App\Http\Livewire\Compra\Brand\RegistroBrandComponent;
 use App\Http\Livewire\Compra\Brand\ShowBrandComponent;
 use App\Http\Livewire\Compra\Category\CategoryComponent;
 use App\Http\Livewire\Compra\Category\CreateCategory;
+use App\Http\Livewire\Compra\Category\EditCategoryComponent;
+use App\Http\Livewire\Compra\Color\ColorComponent;
+use App\Http\Livewire\Compra\Color\CreateColorComponent;
+use App\Http\Livewire\Compra\Color\EditColorComponent;
 use App\Http\Livewire\Compra\Proveedor\EditarProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\ProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\RegistroProveedorComponent;
@@ -84,10 +88,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/brand/registro', RegistroBrandComponent::class)->name('marca-registro');
     Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
     Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
-    
+    // Categoria
     Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');
     Route::get('/compra/category/registro', CreateCategory::class)->name('categoria-registro');
-    Route::get('/compra/category/editar/{category_id}', EditBrandComponent::class)->name('categoria-editar');
+    Route::get('/compra/category/editar/{category_id}', EditCategoryComponent::class)->name('categoria-editar');
     Route::get('compra/category/{category}', ShowBrandComponent::class)->name('categoria.show');
-  
+    // Color
+    Route::get('/compra/color', ColorComponent::class)->name('color.index');
+    Route::get('/compra/color/registro', CreateColorComponent::class)->name('color-registro');
+    Route::get('/compra/color/editar/{color_id}', EditColorComponent::class)->name('color-editar');
+    
 });

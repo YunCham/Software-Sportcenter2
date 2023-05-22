@@ -3,59 +3,39 @@
 namespace App\Http\Livewire\Compra\Category;
 
 use Livewire\Component;
-use App\Models\Subcategory;
 use App\Models\Category;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 class CreateCategory extends Component
 {
     use WithFileUploads;
-
-    public $category;
-    public $subcategories;
     public $name;
-    public $slug;
+    public $slug; 
     public $icon;
+    public $image;
 
     public $createForm = [
         'name' => null,
         'slug' => null,
         'color' => false,
-        'size' => false
+        'size' => false,
+        'image' => false
     ];
-
-    public function mount()
-    {
-        $this->category = new Category();
-    }
-
-    public function updated($field)
-    {
-        $this->validateOnly($field, [
-            'name' => 'required',
-            'slug' => 'required|unique:subcategories,slug',
-        ]);
-    }
 
     public function goBack()
     {
         return redirect()->route('categoria.index');
     }
 
-    public function getSubcategories()
-    {
-        $this->subcategories = Subcategory::where('category_id', $this->category->id)->get();
-    }
-
     public function messages()
     {
         return [
             'name.required' => 'El nombre es requerido.',
-            'name.alpha' => 'El nombre solo puede contener letras y espacios.',
             'slug.required' => 'El slug es requerido.',
             'slug.unique' => 'El slug ya está en uso.',
             'icon.required' => 'El icono es requerido.',
+            'image.required' => 'La imagen es requerido.',
         ];
     }
 
@@ -66,23 +46,25 @@ class CreateCategory extends Component
 
     public function storeBrand()
     {
-        $this->validate([
+        $validatedData = $this->validate([
             'name' => 'required',
-            'slug' => 'required|unique:subcategories,slug',
+            'slug' => 'required|unique:categories,slug',
             'icon' => 'required',
+            'image' => 'required',
         ]);
-        
         $category = new Category();
-        $category->name = $this->name;
-        $category->slug = $this->slug;
-        $category->icon = $this->icon ?? ''; // Asignar una cadena vacía si el campo es nulo
+        $image = $this->image->store('categories', 'public');
+        if($image){
+            $category->image =  $image;
+        }
+        $category->name = $validatedData['name'];
+        $category->slug = $validatedData['slug'];
+        $category->icon = $validatedData['icon'];
         $category->save();
-        $this->category->subcategories()->create($this->createForm);
-        $this->reset('createForm');
         session()->flash('message', 'Nueva Marca registrada!');
         return redirect()->route('categoria.index');
     }
-
+    
     public function updatedName($value)
     {
         $this->slug = Str::slug($value);

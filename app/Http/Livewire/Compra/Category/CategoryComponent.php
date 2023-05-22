@@ -4,15 +4,20 @@ namespace App\Http\Livewire\Compra\Category;
 
 use App\Models\Category;
 use Livewire\Component;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryComponent extends Component
 {
     public function deleteCategoria($id)
     {
-      $category = Category::find($id);
-      $category->delete();
-      session()->flash('message','Registro elimidado exitosamente!');
-      return redirect()->route('marca.index');
+        $category = Category::find($id);
+        $imagePath = 'public/' . $category->image;
+        if (Storage::exists($imagePath)) {
+            Storage::delete($imagePath);
+        }
+        $category->delete();
+        session()->flash('message', 'Registro eliminado exitosamente!');
+        return redirect()->route('categoria.index');
     }
 
     public function render()

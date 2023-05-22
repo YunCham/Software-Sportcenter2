@@ -44,8 +44,15 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Nombre</label>
-                                <input wire:model="name" type="text" class="form-control border border-2 p-2">
+                                <input wire:model="name" type="text" class="form-control border border-2 p-2" placeholder="Ingrese nombre de la Categoria" wire:keydown="filterSpecialCharacters">
                                 @error('name')
+                                    <p class="text-danger inputerror">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Slug</label>
+                                <input disabled wire:model="slug" type="text" class="form-control border border-2 p-2" placeholder="Slug correspondiente al nombre de la Categoria">
+                                @error('slug')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>

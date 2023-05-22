@@ -14,6 +14,7 @@ class BrandComponent extends Component
       session()->flash('message','Registro elimidado exitosamente!');
       return redirect()->route('marca.index');
     }
+    
     public function render()
     {
         $brand = Brand::orderBy('name', 'ASC')->paginate(15);

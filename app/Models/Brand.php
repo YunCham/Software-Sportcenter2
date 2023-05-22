@@ -9,7 +9,7 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'slug'];
     
     //Relacion uno a muchos
     public function products(){
@@ -19,5 +19,10 @@ class Brand extends Model
     //Relacion muchos a muchos
     public function categories(){
         return $this->belongsToMany(Category::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

@@ -9,7 +9,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-3">Datos Marcas</h6>
+                            <h6 class="mb-3">Datos Color</h6>
                         </div>
                     </div>
                 </div>
@@ -42,18 +42,11 @@
                         </div>
                     @endif
                     <form wire:submit.prevent='storeBrand'>
-                        <div class="row">                          
+                        <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">Nombre</label>
-                                <input wire:model="name" type="text" class="form-control border border-2 p-2" placeholder="Ingrese nombre de la Categoria" wire:keydown="filterSpecialCharacters">
+                                <input wire:model="name" type="text" class="form-control border border-2 p-2">
                                 @error('name')
-                                    <p class="text-danger inputerror">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label">Slug</label>
-                                <input disabled wire:model="slug" type="text" class="form-control border border-2 p-2" placeholder="Slug correspondiente al nombre de la Categoria">
-                                @error('slug')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>

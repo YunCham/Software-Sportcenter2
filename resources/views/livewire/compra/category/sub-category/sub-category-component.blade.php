@@ -4,23 +4,21 @@
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">Historial de las Categoria</h6>
+                        <h6 class="text-white text-capitalize ps-3">Historial de la Sub Categoria</h6>
                     </div>
                     {{-- boton añadir --}}
-                    <div class="d-flex justify-content-center align-items-center">
+                    <div class="d-flex justify-content-center align-items-center your-element">
                         <div class="me-3 my-3 text-end">    
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="me-3 my-3 text-end">
-
-
                                     <a class="btn btn-info" style="margin-right: 1cm; border: 2px solid #555;  border-radius: 10px; padding: 10px 20px; font-weight: bold; transition: box-shadow 0.3s;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" href="{{ route('subcategory-registro') }}">
                                         <i class="material-icons align-middle">add</i>
                                         <span class="align-middle">Registrar</span>
                                     </a>
-                                    <a class="btn btn-success" style="border: 2px solid #555; border-radius: 10px;  padding: 10px 20px; font-weight: bold; transition: box-shadow 0.3s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); " href="{{ route('categoria-registro') }}">
+                                    <a class="btn btn-success" style="border: 2px solid #555; border-radius: 10px; padding: 10px 20px; font-weight: bold; transition: box-shadow 0.3s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" href="{{ route('categoria-registro') }}">
                                         <i class="material-icons align-middle">add</i>
-                                        <span class="align-middle">Crear Nueva Categoría</span>
-                                    </a>
+                                        <span class="align-middle">Crear Categoría</span>
+                                    </a>                                                                           
                                 </div>
                             </div>                            
                         </div>
@@ -102,7 +100,6 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -115,10 +112,35 @@
     </div>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    </head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <style>
+          @keyframes shadow-animation {
+            0% {
+              box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+            }
+            50% {
+              box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.8);
+            }
+            100% {
+              box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+            }
+          }
+      
+          .your-element {
+            animation: shadow-animation 5s infinite;
+            background-color: #f1f8e9; /* Color más claro */
+            border: none; /* Sin bordes */
+            padding: 10px; /* Ajusta el espaciado interno según sea necesario */
+            border-radius: 8px; /* Ajusta el radio del borde si deseas bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+          }
+        </style>
+      </head>
+      <body>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+      </body>      
     </div>
   </div>
   

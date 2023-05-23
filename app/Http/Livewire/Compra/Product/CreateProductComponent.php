@@ -10,7 +10,7 @@ use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
 
-class CreateProduct extends Component
+class CreateProductComponent extends Component
 {
     public $categories, $subcategories = [], $brands = [];
     public $category_id = "", $subcategory_id = "", $brand_id = "";
@@ -74,6 +74,6 @@ class CreateProduct extends Component
 
     public function render()
     {
-        return view('livewire.compra.product.create-product');
+        return view('livewire.compra.product.create-product-component');
     }
 }

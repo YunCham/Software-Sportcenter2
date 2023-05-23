@@ -2,17 +2,17 @@
 
 namespace App\Http\Livewire\Compra\Product;
 
+use Livewire\Component;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Subcategory;
-use Livewire\Component;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class EditProduct extends Component
+class EditProductComponent extends Component
 {
     public $product, $categories, $subcategories, $brands, $slug;
 
@@ -94,8 +94,9 @@ class EditProduct extends Component
         $this->product->delete();
         return redirect()->route('admin.index');
     }
+
     public function render()
     {
-        return view('livewire.compra.product.edit-product');
+        return view('livewire.compra.product.edit-product-component');
     }
 }

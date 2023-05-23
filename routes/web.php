@@ -18,6 +18,12 @@ use App\Http\Livewire\Compra\Category\SubCategory\SubCategoryComponent;
 use App\Http\Livewire\Compra\Color\ColorComponent;
 use App\Http\Livewire\Compra\Color\CreateColorComponent;
 use App\Http\Livewire\Compra\Color\EditColorComponent;
+use App\Http\Livewire\Compra\Compra\CompraComponent;
+use App\Http\Livewire\Compra\Compra\CreateCompraComponent;
+use App\Http\Livewire\Compra\Compra\EditCompraComponent;
+use App\Http\Livewire\Compra\Product\CreateProductComponent;
+use App\Http\Livewire\Compra\Product\EditProductComponent;
+use App\Http\Livewire\Compra\Product\ProductComponent;
 use App\Http\Livewire\Compra\Proveedor\EditarProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\ProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\RegistroProveedorComponent;
@@ -107,10 +113,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/size', SizeComponent::class)->name('size.index');
     Route::get('/compra/size/registro', CreateSizeComponent::class)->name('size-registro');
     Route::get('/compra/size/editar/{size_id}', EditSizeComponent::class)->name('size-editar');
-    
     // Categoria
     Route::get('/compra/subcategory', SubCategoryComponent::class)->name('subcategory.index');
     Route::get('/compra/subcategory/registro', CreateSubCategoryComponent::class)->name('subcategory-registro');
     Route::get('/compra/subcategory/editar/{category_id}', EditSubCategoryComponent::class)->name('subcategory-editar');
-  
+     // Producto
+     Route::get('/compra/product', ProductComponent::class)->name('product.index');
+     Route::get('/compra/product/registro', CreateProductComponent::class)->name('product-registro');
+     Route::get('/compra/product/editar/{product_id}', EditProductComponent::class)->name('product-editar');
+    // Compra
+    Route::get('/compra/compra', CompraComponent::class)->name('compra.index');
+    Route::get('/compra/compra/registro', CreateCompraComponent::class)->name('compra-registro');
+    Route::get('/compra/compra/editar/{compra_id}', EditCompraComponent::class)->name('compra-editar');
 });

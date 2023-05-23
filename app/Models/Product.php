@@ -32,6 +32,7 @@ class Product extends Model
         }
         
     }
+    
     //Relacion uno a muchos
     public function sizes(){
         return $this->hasMany(Size::class);

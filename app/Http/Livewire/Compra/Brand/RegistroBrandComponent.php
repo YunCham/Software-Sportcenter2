@@ -25,7 +25,7 @@ class RegistroBrandComponent extends Component
         $this->name = preg_replace('/[^\p{L}\p{N}\s]/u', '', $this->name);
     }
 
-    public function storeBrand()
+    public function submitForm()
     {
         $validatedData = $this->validate([
             'name' => 'required',
@@ -51,6 +51,6 @@ class RegistroBrandComponent extends Component
 
     public function render()
     {
-        return view('livewire.compra.brand.registro-brand-component');
+        return view('livewire.compra.brand.create-edit-brand-component');
     }
 }

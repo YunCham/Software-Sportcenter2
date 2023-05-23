@@ -15,13 +15,13 @@ class CreateColorComponent extends Component
         ]);      
     }
     
-    public function storeBrand()
+    public function submitForm()
     {
-        $this->validate([
-           'name' => 'required',
-        ]);
+        $validatedData = $this->validate([
+            'name' => 'required|unique:colors,name,',
+         ]);
         $color = new Color();
-        $color->name = $this->name;
+        $color->name = $validatedData['name'];
         $color->save();
         session()->flash('message', 'Nuevo Color registrado!');
         return redirect()->route('color.index');
@@ -31,8 +31,9 @@ class CreateColorComponent extends Component
     {
         $this->redirect(route('color.index'));
     }
+
     public function render()
     {
-        return view('livewire.compra.color.create-color-component');
+        return view('livewire.compra.color.create-edit-color-component');
     }
 }

@@ -43,7 +43,7 @@ class EditarProveedorComponent extends Component
   }
 
 //implementacio de la funcion donde Edita los datos
-public function updatePersonal()
+public function submitForm()
 {
   $this->validate([
       'name' => 'required',
@@ -66,12 +66,11 @@ public function updatePersonal()
 
   public function goBack()
   {
-     // Lógica adicional si es necesario
      $this->redirect(route('proveedor.index'));
   }
 
     public function render()
     {
-        return view('livewire.compra.proveedor.editar-proveedor-component');
+        return view('livewire.compra.proveedor.create-editar-proveedor-component');
     }
 }

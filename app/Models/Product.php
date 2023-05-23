@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\Compra\ColorSize;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

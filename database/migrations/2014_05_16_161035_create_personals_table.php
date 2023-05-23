@@ -27,7 +27,6 @@ return new class extends Migration
       $table->decimal('salario', 12, 2)->nullable();
       $table->date('fecha_inicio_contrato');
       $table->date('fecha_fin_contrato');
-
       $table->timestamps();
     });
   }

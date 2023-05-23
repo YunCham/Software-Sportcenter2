@@ -20,7 +20,7 @@ class BrandFactory extends Factory
     
     public function definition(): array
     {
-        $name = $this->faker->sentence(2);
+        $name = $this->faker->sentence(3);
 
         return [
             'name' => $name,

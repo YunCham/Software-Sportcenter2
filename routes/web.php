@@ -18,6 +18,9 @@ use App\Http\Livewire\Compra\Color\EditColorComponent;
 use App\Http\Livewire\Compra\Proveedor\EditarProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\ProveedorComponent;
 use App\Http\Livewire\Compra\Proveedor\RegistroProveedorComponent;
+use App\Http\Livewire\Compra\Size\CreateSizeComponent;
+use App\Http\Livewire\Compra\Size\EditSizeComponent;
+use App\Http\Livewire\Compra\Size\SizeComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
@@ -97,5 +100,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/color', ColorComponent::class)->name('color.index');
     Route::get('/compra/color/registro', CreateColorComponent::class)->name('color-registro');
     Route::get('/compra/color/editar/{color_id}', EditColorComponent::class)->name('color-editar');
+    // Tamaño
+    Route::get('/compra/size', SizeComponent::class)->name('size.index');
+    Route::get('/compra/size/registro', CreateSizeComponent::class)->name('size-registro');
+    Route::get('/compra/size/editar/{size_id}', EditSizeComponent::class)->name('size-editar');
     
 });

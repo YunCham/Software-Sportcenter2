@@ -33,7 +33,7 @@ class EditColorComponent extends Component
         $this->redirect(route('color.index'));
     }
     
-    public function updateMarcas()
+    public function submitForm()
     {
         $this->validate([
             'name' => 'required',
@@ -47,6 +47,6 @@ class EditColorComponent extends Component
 
     public function render()
     {
-        return view('livewire.compra.color.edit-color-component');
+        return view('livewire.compra.color.create-edit-color-component');
     }
 }

@@ -28,7 +28,7 @@ class RegistroProveedorComponent extends Component
         ]);
         
     }
-    public function storeProveedor()
+    public function submitForm()
     {
     $this->validate([
         'name' => 'required',
@@ -57,6 +57,6 @@ class RegistroProveedorComponent extends Component
     
     public function render()
     {
-        return view('livewire.compra.proveedor.registro-proveedor-component');
+        return view('livewire.compra.proveedor.create-editar-proveedor-component');
     }
 }

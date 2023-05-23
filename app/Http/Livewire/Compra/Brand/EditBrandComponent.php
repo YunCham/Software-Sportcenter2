@@ -42,7 +42,7 @@ class EditBrandComponent extends Component
         $this->name = preg_replace('/[^\p{L}\p{N}\s]/u', '', $this->name);
     }
     
-    public function updateMarcas()
+    public function submitForm()
     {
         $this->validate([
             'name' => 'required',
@@ -64,6 +64,6 @@ class EditBrandComponent extends Component
     
     public function render()
     {
-        return view('livewire.compra.brand.edit-brand-component');
+        return view('livewire.compra.brand.create-edit-brand-component');
     }
 }

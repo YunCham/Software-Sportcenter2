@@ -7,6 +7,14 @@ use Livewire\Component;
 
 class SubCategoryComponent extends Component
 {
+    public function deleteCategoria($id)
+    {
+        $category = Subcategory::find($id);
+        $category->delete();
+        session()->flash('message', 'Registro eliminado exitosamente!');
+        return redirect()->route('subcategory.index');
+    }
+    
     public function render()
     {
         $subcategory = Subcategory::orderBy('name', 'ASC')->paginate(15);

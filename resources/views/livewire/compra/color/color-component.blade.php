@@ -19,6 +19,8 @@
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Nombre de la Marca</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        FECHA REGISTRO</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
@@ -32,6 +34,14 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">{{ $color->created_at }}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                      <td>
                                       <td>
                                           <a href="" class="text-orange-500 hover:text-orange-400 hover:underline ml-2 font-semibold">Ver más</a>
                                       </td>                                

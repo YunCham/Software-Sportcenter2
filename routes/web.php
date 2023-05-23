@@ -12,6 +12,9 @@ use App\Http\Livewire\Compra\Brand\ShowBrandComponent;
 use App\Http\Livewire\Compra\Category\CategoryComponent;
 use App\Http\Livewire\Compra\Category\CreateCategory;
 use App\Http\Livewire\Compra\Category\EditCategoryComponent;
+use App\Http\Livewire\Compra\Category\SubCategory\CreateSubCategoryComponent;
+use App\Http\Livewire\Compra\Category\SubCategory\EditSubCategoryComponent;
+use App\Http\Livewire\Compra\Category\SubCategory\SubCategoryComponent;
 use App\Http\Livewire\Compra\Color\ColorComponent;
 use App\Http\Livewire\Compra\Color\CreateColorComponent;
 use App\Http\Livewire\Compra\Color\EditColorComponent;
@@ -105,4 +108,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/size/registro', CreateSizeComponent::class)->name('size-registro');
     Route::get('/compra/size/editar/{size_id}', EditSizeComponent::class)->name('size-editar');
     
+    // Categoria
+    Route::get('/compra/subcategory', SubCategoryComponent::class)->name('subcategory.index');
+    Route::get('/compra/subcategory/registro', CreateSubCategoryComponent::class)->name('subcategory-registro');
+    Route::get('/compra/subcategory/editar/{category_id}', EditSubCategoryComponent::class)->name('subcategory-editar');
+  
 });

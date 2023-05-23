@@ -113,4 +113,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
 
     Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');
+
 });

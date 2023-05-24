@@ -11,9 +11,9 @@
                         <div class="me-3 my-3 text-end">    
                             <div class="d-flex justify-content-center align-items-center">
                                 <div class="me-3 my-3 text-end">
-                                    <a class="btn btn-info" style="margin-right: 1cm; border: 2px solid #555;  border-radius: 10px; padding: 10px 20px; font-weight: bold; transition: box-shadow 0.3s;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" href="{{ route('subcategory-registro') }}">
+                                    <a class="btn btn-info" style="margin-right: 0.5cm; border: 2px solid #555;  border-radius: 10px; padding: 10px 20px; font-weight: bold; transition: box-shadow 0.3s;  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" href="{{ route('subcategory-registro') }}">
                                         <i class="material-icons align-middle">add</i>
-                                        <span class="align-middle">Registrar</span>
+                                        <span class="align-middle">Crear SubCategoria</span>
                                     </a>
                                     <a class="btn btn-success" style="border: 2px solid #555; border-radius: 10px; padding: 10px 20px; font-weight: bold; transition: box-shadow 0.3s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" href="{{ route('categoria-registro') }}">
                                         <i class="material-icons align-middle">add</i>

@@ -18,27 +18,30 @@ class Product extends Model
 
     //accesores
 
-    public function getStockAttribute(){
+    public function getStockAttribute()
+    {
         if ($this->subcategory->size) {
-            return  ColorSize::whereHas('size.product', function(Builder $query){
-                        $query->where('id', $this->id);
-                    })->sum('quantity');
-        } elseif($this->subcategory->color) {
-            return  ColorProduct::whereHas('product', function(Builder $query){
-                        $query->where('id', $this->id);
-                    })->sum('quantity');
-        }else{
+            return $this->sizes->sum(function ($size) {
+                return $size->pivot->quantity ?? 0;
+            });
+        } elseif ($this->subcategory->color) {
+            return $this->colors->sum(function ($color) {
+                return $color->pivot->quantity ?? 0;
+            });
+        } else {
             return $this->quantity;
         }
-        
     }
-    
-    //Relacion uno a muchos
+
+    public function detailProducts()
+    {
+        return $this->hasMany(DetailProduct::class, 'product_id');
+    }
+
     public function sizes(){
         return $this->hasMany(Size::class);
     }
 
-    //Relacion uno a muchos inversa
     public function brand(){
         return $this->belongsTo(Brand::class);
     }
@@ -47,12 +50,10 @@ class Product extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    //Relacion muchos a muchos
     public function colors(){
         return $this->belongsToMany(Color::class)->withPivot('quantity', 'id');
     }
 
-    //relacion uno a muchos polimoefica
     public function images(){
         return $this->morphMany(Image::class, "imageable");
     }

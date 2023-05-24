@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('size_id');
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
 
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
 
             $table->timestamps();
         });

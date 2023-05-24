@@ -85,11 +85,12 @@
                 <div class="collapse" id="collapseMenu2">
                     <ul class="nav">
                         <li class="nav-item"><a class="nav-link" href="{{route('proveedor.index')}}">Proveedor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('product.index')}}">Producto</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('marca.index')}}">Marca</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('subcategory.index')}}">SubCategorias</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('categoria.index')}}">Categoria</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('color.index')}}">Color</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('size.index')}}">Tamaño Producto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('subcategory.index')}}">SubCategorias</a></li>
                     </ul>
                 </div>
             </li>

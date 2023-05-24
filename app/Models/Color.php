@@ -11,9 +11,9 @@ class Color extends Model
 
     protected $fillable = ['name'];
 
-    //Relacion muchos a muchos
-    public function products(){
-        return $this->belongsToMany(Product::class);
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function sizes(){

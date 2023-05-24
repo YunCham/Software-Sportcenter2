@@ -3,77 +3,98 @@
 namespace App\Http\Livewire\Compra\Product;
 
 use Livewire\Component;
-use Illuminate\Support\Str;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Color;
+use App\Models\DetailProduct;
 use App\Models\Product;
+use App\Models\Size;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
 
 class CreateProductComponent extends Component
 {
-    public $categories, $subcategories = [], $brands = [];
-    public $category_id = "", $subcategory_id = "", $brand_id = "";
-    public $name, $slug, $description, $price, $quantity;
+    public $name;
+    public $slug;
+    public $quantity;
+    public $price;
+    public $category;
+    public $subcategory;
+    public $brand;
+    public $colors;
+    public $sizes;
 
-    protected $rules = [
-        'category_id' => 'required',
-        'subcategory_id' => 'required',
-        'name' => 'required',
-        'slug' => 'required|unique:products',
-        'description' => 'required',
-        'brand_id' => 'required',
-        'price' => 'required',
-    ];
-
-    public function updatedCategoryId($value){
-        $this->subcategories = Subcategory::where('category_id', $value)->get();
-
-        $this->brands = Brand::whereHas('categories', function(Builder $query) use ($value){
-            $query->where('category_id', $value);
-        })->get();
-
-        $this->reset(['subcategory_id', 'brand_id']);
+    public function mount()
+    {
+        // Inicializar la variable $subcategories con los datos necesarios
+        $this->subcategory = Subcategory::all();
+        $this->colors = Color::all();
+        $this->sizes = Size::all();
+        $this->brand = Brand::all();
     }
 
-    public function updatedName($value){
-        $this->slug = Str::slug($value);
-    }
-
-    public function getSubcategoryProperty(){
-        return Subcategory::find($this->subcategory_id);
-    }
-
-    public function mount(){
-        $this->categories = Category::all();
-    }
-
-    public function save(){
-        $rules = $this->rules;
-        if ($this->subcategory_id) {
-            if (!$this->subcategory->color && !$this->subcategory->size) {
-                $rules['quantity'] = 'required';
-            }
-        }
-        $this->validate($rules);
+    public function saveProduct()
+    {
+        $validatedData = $this->validate([
+            'name' => 'required|string',
+            'slug' => 'required|string',
+            'quantity' => 'required|integer',
+            'price' => 'required|numeric',
+            'category' => 'required|exists:categories,id',
+            'subcategory' => 'required|exists:categories,id',
+            'brand' => 'required|exists:brands,id',
+            'colors' => 'required|array',
+            'sizes' => 'required|array',
+        ]);
+        // Crear el producto
         $product = new Product();
-        $product->name = $this->name;
-        $product->slug = $this->slug;
-        $product->description = $this->description;
-        $product->price = $this->price;
-        $product->subcategory_id = $this->subcategory_id;
-        $product->brand_id = $this->brand_id;
-        if ($this->subcategory_id) {
-            if (!$this->subcategory->color && !$this->subcategory->size) {
-                $product->quantity = $this->quantity;
+        $product->name = $validatedData['name'];
+        $product->slug = $validatedData['slug'];
+        $product->quantity = $validatedData['quantity'];
+        $product->price = $validatedData['price'];
+        $product->save();
+        // Asociar la categoría, subcategoría y marca al producto
+        $product->categories()->attach($validatedData['category']);
+        $product->subcategories()->attach($validatedData['subcategory']);
+        $product->brands()->attach($validatedData['brand']);
+        // Asociar los colores al producto
+        $product->colors()->sync($validatedData['colors']);
+        // Asociar los tamaños al producto
+        $product->sizes()->sync($validatedData['sizes']);
+        // Crear los detail_products
+        foreach ($validatedData['colors'] as $colorId) {
+            foreach ($validatedData['sizes'] as $sizeId) {
+                $detailProduct = new DetailProduct();
+                $detailProduct->product_id = $product->id;
+                $detailProduct->color_id = $colorId;
+                $detailProduct->size_id = $sizeId;
+                $detailProduct->quantity = 0; // Establece la cantidad inicial según tus requerimientos
+                $detailProduct->price = $validatedData['price']; // Establece el precio según tus requerimientos
+                $detailProduct->save();
             }
         }
-        $product->save();
-        return redirect()->route('admin.products.edit', $product);
+        // Restablecer los campos
+        $this->reset();      
+    }
+
+    public function loadSubcategories()
+    {
+        $this->subcategory = Subcategory::where('category_id', $this->category)->get();
     }
 
     public function render()
     {
-        return view('livewire.compra.product.create-product-component');
+        $categories = Category::all();
+        $subcategory = Subcategory::where('category_id')->get();
+        $brands = Brand::all();
+        $colors = Color::all();
+        $sizes = Size::all();
+        return view('livewire.compra.product.create-product-component', [
+            'categories' => $categories,
+            'subcategories' => $subcategory,
+            'brands' => $brands,
+            'colors' => $colors,
+            'sizes' => $sizes,
+        ]);
     }
 }

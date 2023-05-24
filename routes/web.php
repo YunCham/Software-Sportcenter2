@@ -18,6 +18,7 @@ use App\Http\Livewire\Compra\Category\SubCategory\SubCategoryComponent;
 use App\Http\Livewire\Compra\Color\ColorComponent;
 use App\Http\Livewire\Compra\Color\CreateColorComponent;
 use App\Http\Livewire\Compra\Color\EditColorComponent;
+use App\Http\Livewire\Compra\ColorProduct;
 use App\Http\Livewire\Compra\Compra\CompraComponent;
 use App\Http\Livewire\Compra\Compra\CreateCompraComponent;
 use App\Http\Livewire\Compra\Compra\EditCompraComponent;
@@ -125,4 +126,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/compra', CompraComponent::class)->name('compra.index');
     Route::get('/compra/compra/registro', CreateCompraComponent::class)->name('compra-registro');
     Route::get('/compra/compra/editar/{compra_id}', EditCompraComponent::class)->name('compra-editar');
+
+    Route::get('/compra/product/registro', CreateProductComponent::class)->name('product.index');
+
 });

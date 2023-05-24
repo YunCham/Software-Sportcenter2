@@ -40,9 +40,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="category_id">Category:</label>
+                                <label for="category_id">Seleccione Categoría:</label>
                                 <select wire:model="category_id" class="form-control @error('category_id') is-invalid @enderror" id="category_id">
-                                    <option value="">Select category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -50,7 +49,7 @@
                                 @error('category_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>    
+                            </div>                               
                             <div style="margin-top: 0.55cm;">                      
                                 <button type="button" wire:click="goBack()" class="btn btn-danger">Cancelar</button>
                                 <button type="submit" class="btn btn-info" style="margin-left: 0.5cm;">Guardar</button>                

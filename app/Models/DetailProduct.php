@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DetailProduct extends Model
 {
     use HasFactory;
-    protected $fillable = ['subcategory_id', 'product_id', 'brand_id', 'size_id', 'quantity', 'status', 'price'];
+    protected $fillable = ['product_id', 'brand_id', 'size_id', 'quantity', 'price'];
 
     public function product()
     {
@@ -22,10 +22,6 @@ class DetailProduct extends Model
 
     public function brand(){
         return $this->belongsTo(Brand::class);
-    }
-
-    public function subcategory(){
-        return $this->belongsTo(Subcategory::class);
     }
 
     public function colors(){

@@ -18,10 +18,13 @@ return new class extends Migration
             
             $table->string('slug');
 
-            $table->integer('quantity')->default(0);
+            $table->integer('quantity')->nullable()->default(0);
 
             $table->float('price', 10, 2)->nullable()->default(0);          
-            
+          
+            $table->unsignedBigInteger('subcategory_id');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+        
             $table->timestamps();
         });
     }

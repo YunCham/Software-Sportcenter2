@@ -127,6 +127,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/compra/compra/registro', CreateCompraComponent::class)->name('compra-registro');
     Route::get('/compra/compra/editar/{compra_id}', EditCompraComponent::class)->name('compra-editar');
 
-    Route::get('/compra/product/registro', CreateProductComponent::class)->name('product.index');
+    Route::get('/compra/product', CreateProductComponent::class)->name('product.index');
+    Route::get('/compra/product/registro', CreateProductComponent::class)->name('product-registro');
 
 });

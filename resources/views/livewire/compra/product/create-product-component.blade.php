@@ -4,7 +4,7 @@
                 style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
                 <span class="mask  bg-gradient-primary  opacity-6"></span>
             </div>
-            <div class="card card-body mx-3 mx-md-4 mt-n6">
+            <div class="card card-body mx-2 mx-md-3 mt-n6">
                 <div class="card card-plain h-100">
                     <div class="card-header pb-0 p-3">
                         <div class="row">
@@ -87,53 +87,103 @@
                                     @error('subcategory_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div>                                                                                                                            
                                 <div class="col-6">
                                     <div class="form-group">
-                                         <label for="quantity">Cantidad Total</label>
-                                         <input class="form-control" type="number" name="quantity" value="{{ old('quantity') }}" id="stockInput" oninput="validateNumericInput(this)">
-                                         @error ('quantity')
-                                           <p style="color: red;">{{ $errors->first('stock') }}</p>
-                                         @enderror
-                                    </div>
-                                </div>                                    
-                                <div class="col-6">
-                                    <div class="form-group">
-                                      <label for="precio">Precio Total</label>
-                                      <div class="input-group">
-                                        <input class="form-control" type="number" name="price" step="0.1" value="{{ old('price') }}" oninput="updateValue(this)">
-                                        <div class="input-group-append">
-                                          <button type="button" class="btn btn-outline-secondary" onclick="increaseValue(0.1)">+</button>
-                                          <button type="button" class="btn btn-outline-secondary" onclick="decreaseValue(0.1)">-</button>
-                                        </div>
-                                      </div>
-                                      <div class="mt-3">
-                                        <p class="mb-2">Opciones de aumento:</p>
-                                        <div class="btn-group" role="group" aria-label="Opciones de aumento">
-                                          <button type="button" class="btn btn-outline-secondary" onclick="setIncrementAmount(0.1)">0.1</button>
-                                          <button type="button" class="btn btn-outline-secondary" onclick="setIncrementAmount(0.5)">0.5</button>
-                                          <button type="button" class="btn btn-outline-secondary" onclick="setIncrementAmount(5)">5</button>
-                                          <button type="button" class="btn btn-outline-secondary" onclick="setIncrementAmount(10)">10</button>
-                                          <button type="button" class="btn btn-outline-secondary" onclick="setIncrementAmount(20)">20</button>
-                                          <button type="button" class="btn btn-outline-secondary" onclick="setIncrementAmount(50)">50</button>
-                                        </div>
-                                      </div>
-                                      @error ('price')
-                                      <p style="color: red;">{{ $errors->first('price') }}</p>
-                                      @enderror
-                                    </div>
-                                </div>                                                                
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for ="brand">Marcas</label>
+                                        <label for="brand">Marcas</label>
                                         <select class="form-control" name="brand_id">
-                                        @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="size">Tamaño Producto</label>
+                                        <select class="form-control" name="size_id"> <!-- Updated name attribute -->
+                                            @foreach ($sizes as $size)
+                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                                            
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for ="color">Color del Producto</label>
+                                        <select class="form-control" name="brand_id">
+                                        @foreach ($colors as $color)
+                                            <option value="{{ $color->id }}"> {{ $color->name }} </option>
                                         @endforeach
                                         </select>
                                     </div>
-                                </div> 
-                            </div>                                          
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="quantity">Cantidad Total</label>
+                                        <input class="form-control" type="number" name="quantity" wire:model="quantity" id="stockInput" oninput="validateNumericInput(this)">
+                                        @error ('quantity')
+                                            <p style="color: red;">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="price">Precio</label>
+                                        <input class="form-control" type="number" name="price" wire:model="price" id="stockInput" oninput="validateNumericInput(this)">
+                                        @error ('price')
+                                            <p style="color: red;">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>                                                                        
+                            </div>
+                            <button type="button" wire:click="loadDetailProducts" class="btn btn-primary">
+                                Cargar Detalle de Productos
+                            </button>                           
+                            <div class="card">
+                                <h1 class="text-2xl font-bold text-leaf m-6 text-center">Detalle Producto</h1>
+                                <div class="table-responsive p-0">
+                                    <table class="table table-striped mb-4">
+                                        <thead class="bg-blue-700 text-black">
+                                            <tr>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Color</th>
+                                                <th scope="col">Dimensiones</th>
+                                                <th scope="col">Marca</th>                                           
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Precio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200">
+                                            @foreach ($detailProducts as $producto)
+                                                <tr>
+                                                    <td class="px-6 py-2 text-sm text-gray-900 font-bold">
+                                                        {{ $producto['name'] }} <!-- Updated key to 'name' -->
+                                                    </td>
+                                                    <td class="px-6 py-2 text-sm">
+                                                        {{ $producto['color_id'] }} <!-- Updated key to 'color_id' -->
+                                                    </td>
+                                                    <td class="px-6 py-2 text-sm">
+                                                        {{ $producto['size_id'] }}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-sm">
+                                                        {{ $producto['brand_id'] }}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-sm">
+                                                        {{ $producto['quantity'] }}
+                                                    </td>
+                                                    <td class="px-6 py-2 text-sm">
+                                                        {{ $producto['price'] }} <!-- Updated key to 'price' -->
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>                          
+                            </div>                            
                             <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                             <button type="submit" class="btn btn-success">
                                     <i class="material-icons align-middle">add</i>
@@ -148,52 +198,13 @@
                 .input-group-append {
                   position: relative;
                   bottom: 0.125rem;
-                }
-              
+                }          
                 .btn-group .btn {
                   border-radius: 0;
                 }
               </style>      
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        </head>
-        <script>
-            var incrementAmount = 0.1; // Incremento por defecto
-          
-            function updateValue(input) {
-              var currentValue = parseFloat(input.value);
-              if (isNaN(currentValue)) {
-                currentValue = 0;
-              }
-              input.dataset.previousValue = currentValue.toFixed(2);
-            }
-          
-            function increaseValue() {
-              var input = document.getElementsByName("price")[0];
-              var currentValue = parseFloat(input.value);
-              var newValue = currentValue + incrementAmount;
-              input.value = newValue.toFixed(2);
-            }
-          
-            function decreaseValue() {
-              var input = document.getElementsByName("price")[0];
-              var currentValue = parseFloat(input.value);
-              var newValue = currentValue - incrementAmount;
-              input.value = newValue.toFixed(2);
-            }
-          
-            function setIncrementAmount(amount) {
-              incrementAmount = amount;
-            }
-
-            function validateNumericInput(input) {
-                // Remover cualquier carácter que no sea numérico
-                input.value = input.value.replace(/\D/g, '');
-              }
-          </script>
-          
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        </head> 
         </div>
     </div>
     

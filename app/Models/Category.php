@@ -25,6 +25,7 @@ class Category extends Model
         return $this->hasMany(Product::class, 'subcategory_id')
             ->through(Subcategory::class);
     }
+    
     //URL AMIGABLES
     public function getRouteKeyName()
     {

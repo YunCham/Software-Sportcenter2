@@ -14,50 +14,20 @@ class Product extends Model
     const BORRADOR = 1;
     const PUBLICADO = 2;
 
-    protected $guarded = ['id', 'created_at', 'updated_at'];
-
-    //accesores
-
-    public function getStockAttribute()
-    {
-        if ($this->subcategory->size) {
-            return $this->sizes->sum(function ($size) {
-                return $size->pivot->quantity ?? 0;
-            });
-        } elseif ($this->subcategory->color) {
-            return $this->colors->sum(function ($color) {
-                return $color->pivot->quantity ?? 0;
-            });
-        } else {
-            return $this->quantity;
-        }
-    }
+    protected $fillable = ['name', 'slug', 'price', 'quantity', 'subcategory_id'];
 
     public function detailProducts()
     {
-        return $this->hasMany(DetailProduct::class, 'product_id');
-    }
-
-    public function sizes(){
-        return $this->hasMany(Size::class);
-    }
-
-    public function brand(){
-        return $this->belongsTo(Brand::class);
+        return $this->hasMany(DetailProduct::class);
     }
 
     public function subcategory(){
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function colors(){
-        return $this->belongsToMany(Color::class)->withPivot('quantity', 'id');
-    }
-
     public function images(){
         return $this->morphMany(Image::class, "imageable");
     }
-
     //URL AMIGABLES
     public function getRouteKeyName()
     {

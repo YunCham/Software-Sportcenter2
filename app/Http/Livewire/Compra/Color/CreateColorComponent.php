@@ -18,7 +18,7 @@ class CreateColorComponent extends Component
     public function submitForm()
     {
         $validatedData = $this->validate([
-            'name' => 'required|unique:colors,name,',
+            'name' => 'required',
          ]);
         $color = new Color();
         $color->name = $validatedData['name'];

@@ -90,26 +90,24 @@
                                 </div>                                                                                                                            
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="brand">Marcas</label>
-                                        <select class="form-control" name="brand_id">
+                                        <label for="brand_id">Marca del Producto</label>
+                                        <select wire:model="brand_id" class="form-control" id="brand_id">
                                             @foreach ($brands as $brand)
                                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                
+                                </div>                
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="size">Tamaño Producto</label>
-                                        <select class="form-control" name="size_id"> <!-- Updated name attribute -->
+                                        <label for="size_id">Tamaño del Producto</label>
+                                        <select wire:model="size_id" class="form-control" id="size_id">
                                             @foreach ($sizes as $size)
                                                 <option value="{{ $size->id }}">{{ $size->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                                            
+                                </div>                                                                                      
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for ="color">Color del Producto</label>
@@ -139,51 +137,57 @@
                                     </div>
                                 </div>                                                                        
                             </div>
-                            <button type="button" wire:click="loadDetailProducts" class="btn btn-primary">
-                                Cargar Detalle de Productos
-                            </button>                           
+                            
                             <div class="card">
                                 <h1 class="text-2xl font-bold text-leaf m-6 text-center">Detalle Producto</h1>
                                 <div class="table-responsive p-0">
                                     <table class="table table-striped mb-4">
                                         <thead class="bg-blue-700 text-black">
                                             <tr>
-                                                <th scope="col">Producto</th>
-                                                <th scope="col">Color</th>
-                                                <th scope="col">Dimensiones</th>
-                                                <th scope="col">Marca</th>                                           
+                                                <th scope="col">Marca</th>
+                                                <th scope="col">Tamaño</th>
                                                 <th scope="col">Cantidad</th>
                                                 <th scope="col">Precio</th>
+                                                <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200">
-                                            @foreach ($detailProducts as $producto)
-                                                <tr>
-                                                    <td class="px-6 py-2 text-sm text-gray-900 font-bold">
-                                                        {{ $producto['name'] }} <!-- Updated key to 'name' -->
-                                                    </td>
-                                                    <td class="px-6 py-2 text-sm">
-                                                        {{ $producto['color_id'] }} <!-- Updated key to 'color_id' -->
-                                                    </td>
-                                                    <td class="px-6 py-2 text-sm">
-                                                        {{ $producto['size_id'] }}
-                                                    </td>
-                                                    <td class="px-6 py-2 text-sm">
-                                                        {{ $producto['brand_id'] }}
-                                                    </td>
-                                                    <td class="px-6 py-2 text-sm">
-                                                        {{ $producto['quantity'] }}
-                                                    </td>
-                                                    <td class="px-6 py-2 text-sm">
-                                                        {{ $producto['price'] }} <!-- Updated key to 'price' -->
-                                                    </td>
-                                                </tr>
+                                            @foreach ($detailProducts as $index => $detalleProducto)
+                                            <tr>
+                                                <td class="">
+                                                    <select wire:model="detailProducts.{{ $index }}.brand_id" class="form-control">
+                                                        <option value="">Seleccionar Marca</option>
+                                                        @foreach ($brands as $brand)
+                                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td class="">
+                                                    <select wire:model="detailProducts.{{ $index }}.size_id" class="form-control">
+                                                        <option value="">Seleccionar Tamaño</option>
+                                                        @foreach ($sizes as $size)
+                                                        <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </td>
+                                                <td class="">
+                                                    <input type="number" wire:model="detailProducts.{{ $index }}.quantity" class="form-control" min="0">
+                                                </td>
+                                                <td class="">
+                                                    <input type="number" wire:model="detailProducts.{{ $index }}.price" class="form-control" min="0">
+                                                </td>
+                                                <td class="">
+                                                    <button wire:click="removeDetalleProducto({{ $index }})" class="btn btn-danger">Eliminar</button>
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
-                                        
                                     </table>
-                                </div>                          
-                            </div>                            
+                                </div>
+                                <div class="px-6 py-4">
+                                    <button wire:click="addDetalleProducto" class="btn btn-primary">Agregar Detalle</button>
+                                </div>
+                            </div>                                                                                                                                                                                
                             <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                             <button type="submit" class="btn btn-success">
                                     <i class="material-icons align-middle">add</i>

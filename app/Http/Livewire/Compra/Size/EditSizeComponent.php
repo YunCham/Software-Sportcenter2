@@ -6,13 +6,14 @@ use App\Models\Size;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class EditSizeComponent extends Component
 {
     use WithFileUploads;
     use WithPagination;
 
-    public $name, $size_id;
+    public $name, $size_id, $slug, $titulo = 'Editar Datos del Tamaño que pertenecera a Producto';
 
     public function goBack()
     {
@@ -29,7 +30,8 @@ class EditSizeComponent extends Component
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'name' => 'required|unique:sizes,name,'.$this->size_id,          
+            'name' => 'required', 
+            'slug' => 'required|unique:sizes,slug,'.$this->size_id,    
         ]);        
     }
 
@@ -38,6 +40,8 @@ class EditSizeComponent extends Component
         return [
             'name.required' => 'El nombre es requerido.',
             'name.unique' => 'El nombre ya está en uso.',
+            'slug.required' => 'El slug es requerido.',
+            'slug.unique' => 'El slug ya está en uso.',
         ];
     }
 
@@ -53,6 +57,11 @@ class EditSizeComponent extends Component
         $size->save();
         session()->flash('message', 'Editar Tamaño registrada!');
         return redirect()->route('size.index');
+    }
+
+    public function updatedName($value)
+    {
+        $this->slug = Str::slug($value);
     }
 
     public function render()

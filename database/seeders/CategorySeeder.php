@@ -21,11 +21,6 @@ class CategorySeeder extends Seeder
                 'slug' => Str::slug('Celulares y tablets'),
                 'icon' => '<i class="fas fa-mobile-alt"></i>'
             ],
-            [
-                'name' => 'TV, audio y video',
-                'slug' => Str::slug('TV, audio y video'),
-                'icon' => '<i class="fas fa-tv"></i>'
-            ],
 
             [
                 'name' => 'Consola y videojuegos',

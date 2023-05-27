@@ -1,3 +1,4 @@
+    
     <div>
         <div class="container-fluid px-2 px-md-4">
             <div class="page-header min-height-300 border-radius-xl mt-4"
@@ -87,27 +88,7 @@
                                     @error('subcategory_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>                                                                                                                            
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="brand_id">Marca del Producto</label>
-                                        <select wire:model="brand_id" class="form-control" id="brand_id">
-                                            @foreach ($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>                
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="size_id">Tamaño del Producto</label>
-                                        <select wire:model="size_id" class="form-control" id="size_id">
-                                            @foreach ($sizes as $size)
-                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>                                                                                      
+                                </div>                                                                                                                                                            
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for ="color">Color del Producto</label>
@@ -117,27 +98,8 @@
                                         @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="quantity">Cantidad Total</label>
-                                        <input class="form-control" type="number" name="quantity" wire:model="quantity" id="stockInput" oninput="validateNumericInput(this)">
-                                        @error ('quantity')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="price">Precio</label>
-                                        <input class="form-control" type="number" name="price" wire:model="price" id="stockInput" oninput="validateNumericInput(this)">
-                                        @error ('price')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
-                                    </div>
                                 </div>                                                                        
-                            </div>
-                            
+                            </div>             
                             <div class="card">
                                 <h1 class="text-2xl font-bold text-leaf m-6 text-center">Detalle Producto</h1>
                                 <div class="table-responsive p-0">
@@ -152,45 +114,47 @@
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-200">
-                                            @foreach ($detailProducts as $index => $detalleProducto)
-                                            <tr>
-                                                <td class="">
-                                                    <select wire:model="detailProducts.{{ $index }}.brand_id" class="form-control">
-                                                        <option value="">Seleccionar Marca</option>
-                                                        @foreach ($brands as $brand)
-                                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </td>
-                                                <td class="">
-                                                    <select wire:model="detailProducts.{{ $index }}.size_id" class="form-control">
-                                                        <option value="">Seleccionar Tamaño</option>
-                                                        @foreach ($sizes as $size)
-                                                        <option value="{{ $size->id }}">{{ $size->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </td>
-                                                <td class="">
-                                                    <input type="number" wire:model="detailProducts.{{ $index }}.quantity" class="form-control" min="0">
-                                                </td>
-                                                <td class="">
-                                                    <input type="number" wire:model="detailProducts.{{ $index }}.price" class="form-control" min="0">
-                                                </td>
-                                                <td class="">
-                                                    <button wire:click="removeDetalleProducto({{ $index }})" class="btn btn-danger">Eliminar</button>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                            <tbody class="divide-y divide-gray-200">
+                                                @for ($i = $detalleProductoIndex; $i >= 0; $i--)
+                                                    <tr>
+                                                        <td class="">
+                                                            <select wire:model="detailProducts.{{ $i }}.brand_id" class="form-control">
+                                                                <option value="">Seleccionar Marca</option>
+                                                                @foreach ($brands as $brand)
+                                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td class="">
+                                                            <select wire:model="detailProducts.{{ $i }}.size_id" class="form-control">
+                                                                <option value="">Seleccionar Tamaño</option>
+                                                                @foreach ($sizes as $size)
+                                                                <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td class="">
+                                                            <input type="number" wire:model="detailProducts.{{ $i }}.quantity" class="form-control" min="0">
+                                                        </td>
+                                                        <td class="">
+                                                            <input type="number" wire:model="detailProducts.{{ $i }}.price" class="form-control" min="0">
+                                                        </td>
+                                                        <td class="">
+                                                            <button wire:click="removeDetalleProducto({{ $i }})" class="btn btn-danger">Eliminar</button>
+                                                        </td>
+                                                    </tr>
+                                                @endfor
+                                            </tbody>                                            
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="px-6 py-4">
                                     <button wire:click="addDetalleProducto" class="btn btn-primary">Agregar Detalle</button>
                                 </div>
-                            </div>                                                                                                                                                                                
+                            </div>                                                                                                                                                                                                                                     
                             <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
-                            <button type="submit" class="btn btn-success">
-                                    <i class="material-icons align-middle">add</i>
+                            <button type="submit" class="btn btn-success" onclick="submitAndRedirect(event)">
+                                <i class="material-icons align-middle">add</i>
                                 <span class="align-middle">Registrar</span>
                             </button>
                         </form>
@@ -209,6 +173,17 @@
               </style>      
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         </head> 
+        <script>
+            function submitAndRedirect(event) {
+                event.preventDefault(); // Evitar el envío normal del formulario
+        
+                // Enviar el formulario mediante JavaScript
+                document.getElementById('myForm').submit();
+        
+                // Redireccionar al usuario a otra ventana
+                window.open('livewire.compra.color.color-component', '_blank');
+            }
+        </script>
         </div>
     </div>
     

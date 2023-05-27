@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
+            $table->double('price')->default(0);
+            $table->integer('quantity')->default(0);
+            
             $table->timestamps();
         });
     }

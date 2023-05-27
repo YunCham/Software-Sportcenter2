@@ -12,7 +12,7 @@ class EditColorComponent extends Component
     use WithPagination;
     use WithFileUploads;
     public $color_id;
-    public $name;
+    public $name, $titulo = 'Editar Color';
 
     public function mount($color_id)
     {
@@ -37,6 +37,7 @@ class EditColorComponent extends Component
     {
         $this->validate([
             'name' => 'required',
+            'slug' => 'required|unique:colors,slug,'.$this->color_id,    
         ]);
         $color = Color::find($this->color_id);
         $color->name = $this->name;
@@ -47,6 +48,6 @@ class EditColorComponent extends Component
 
     public function render()
     {
-        return view('livewire.compra.color.create-edit-color-component');
+        return view('livewire.compra.size.create-edit-size-component');
     }
 }

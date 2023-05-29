@@ -96,31 +96,7 @@ class SubcategorySeeder extends Seeder
                 'category_id' => 4,
                 'name' => 'Accesorios computadoras',
                 'slug' => Str::slug('Accesorios computadoras'),
-            ],
-
-            [
-                'category_id' => 5,
-                'name' => 'Mujeres',
-                'slug' => Str::slug('Mujeres'),              
-            ],
-
-            [
-                'category_id' => 5,
-                'name' => 'Hombres',
-                'slug' => Str::slug('Hombres'),
-            ],
-
-            [
-                'category_id' => 5,
-                'name' => 'Lentes',
-                'slug' => Str::slug('Lentes'),
-            ],
-
-            [
-                'category_id' => 5,
-                'name' => 'Relojes',
-                'slug' => Str::slug('Relojes'),
-            ],
+            ]
         ];
         foreach ($subcategories as $subcategory) {            
             Subcategory::create($subcategory);

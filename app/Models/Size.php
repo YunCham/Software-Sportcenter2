@@ -11,14 +11,16 @@ class Size extends Model
 
     protected $fillable = ['name', 'product_id'];
 
-    // Relación muchos a muchos con la tabla 'colors'
-    public function colors()
-    {
-        return $this->belongsToMany(Color::class)->withPivot('quantity');
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
+
+    public function colors(){
+        return $this->belongsToMany(Color::class)->withPivot('quantity', 'id');
     }
 
     public function detailProducts()
     {
-        return $this->belongsToMany(DetailProduct::class, 'color_size');
+        return $this->belongsToMany(DetailProduct::class);
     }
 }

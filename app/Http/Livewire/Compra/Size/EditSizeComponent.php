@@ -25,6 +25,7 @@ class EditSizeComponent extends Component
         $sizes = Size::find($size_id);
         $this->size_id = $sizes->id;
         $this->name = $sizes->name;
+        $this->slug = $sizes->slug;
     }
             
     public function updated($fields)
@@ -54,6 +55,7 @@ class EditSizeComponent extends Component
     {
         $size = Size::find($this->size_id);
         $size->name = $this->name;
+        $size->slug = $this->slug;
         $size->save();
         session()->flash('message', 'Editar Tamaño registrada!');
         return redirect()->route('size.index');

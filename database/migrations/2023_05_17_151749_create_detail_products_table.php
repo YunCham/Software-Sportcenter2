@@ -24,10 +24,13 @@ return new class extends Migration
             $table->unsignedBigInteger('size_id');
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
 
+            $table->unsignedBigInteger('color_id');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            
             $table->integer('quantity')->default(0);
 
             $table->enum('status', [Product::BORRADOR, Product::PUBLICADO])->default(Product::BORRADOR);
-           
+            
             $table->float('price', 10, 2);
 
             $table->timestamps();

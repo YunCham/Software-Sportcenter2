@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Color;
+use App\Models\ColorProduct;
+use App\Models\ColorSize;
 use App\Models\DetailProduct;
 use App\Models\Product;
 use App\Models\Size;
@@ -17,7 +19,7 @@ class CreateProductComponent extends Component
     public $category_id, $subcategory_id, $brand_id, $product_id, $size_id, $color_id;
     public $categories = [], $subcategories = [], $brands = [];
     public $name, $quantity, $price, $slug, $sizes, $colors, $tempProduct;
-    public $detailProducts  = [], $detalleProductoIndex = 0 ; // Lista de detalles de productos temporales
+    public $detailProducts  = [], $detalleProductoIndex = 0;
 
     public function mount()
     {
@@ -40,61 +42,89 @@ class CreateProductComponent extends Component
     }
 
     public function addDetalleProducto()
-    {
+    {     
         $this->detalleProductoIndex++;
         $detalleProducto = [
             'brand_id' => $this->brand_id,
             'size_id' => $this->size_id,
             'quantity' => $this->quantity ? $this->quantity : 0,
             'price' => $this->price ? $this->price : 0,
+            'color_id' => $this->color_id,
             'status' => 1
-        ];
+        ];      
         $this->detailProducts [] = $detalleProducto;
         $this->brand_id = null;
         $this->size_id = null;
         $this->quantity = null;
         $this->price = null;
+        $this->color_id = null;
     }
 
     public function submitForm()
     {
         $validatedData = $this->validate([
             'name' => 'required|string',
-            'slug' => 'required',
+            'slug' => 'required|unique:products,slug',
             'subcategory_id' => 'required|exists:subcategories,id',
-        ]);       
-        $existingProduct = Product::where('slug', $validatedData['slug'])->first();
-        $productId = 0;
-        if ($existingProduct) {
-            $productId = $existingProduct->id;
-        } else {
-            $product = new Product();
-            $product->name = $validatedData['name'];
-            $product->slug = $validatedData['slug'];
-            $product->subcategory_id = $validatedData['subcategory_id'];
-            $product->price = $this->price ? $this->price : 0;
-            $product->quantity = $this->quantity ? $this->quantity : 0;
-            $product->save();
-            $productId = $product->id;
-        }     
+        ]);             
+        $product = new Product();
+        $product->name = $validatedData['name'];
+        $product->slug = $validatedData['slug'];
+        $product->subcategory_id = $validatedData['subcategory_id'];
+        $product->save();
+        $productId = $product->id;
+        $productTotalQuantity = 0;
         foreach ($this->detailProducts as $detailProduct) {
             if (!is_null($detailProduct['brand_id'])) { // Check if brand_id is not null
-                $newDetailProduct = new DetailProduct();
-                $newDetailProduct->brand_id = $detailProduct['brand_id'];
-                $newDetailProduct->size_id = $detailProduct['size_id'];
-                $newDetailProduct->product_id = $productId;
-                $newDetailProduct->quantity = $detailProduct['quantity'];
-                $newDetailProduct->price = $detailProduct['price'];
-                $newDetailProduct->status = 1;
+                $newDetailProduct = new DetailProduct([
+                    'brand_id' => $detailProduct['brand_id'],
+                    'size_id' => $detailProduct['size_id'],
+                    'color_id' => $detailProduct['color_id'],
+                    'product_id' => $productId,
+                    'quantity' => $detailProduct['quantity'],
+                    'price' => $detailProduct['price'],
+                    'status' => 1,
+                ]);
                 $newDetailProduct->save();
+                $productTotalQuantity += $newDetailProduct->quantity;                        
+                $colorProduct = ColorProduct::where('color_id', $detailProduct['color_id'])
+                ->where('product_id', $product->id)->first();
+                if ($colorProduct) {
+                    $colorProduct->quantity += $detailProduct['quantity'];
+                    $colorProduct->save();
+                } else {
+                    $colorProduct = new ColorProduct();
+                    $colorProduct->color_id = $detailProduct['color_id'];
+                    $colorProduct->product_id = $product->id;
+                    $colorProduct->quantity = $detailProduct['quantity'];
+                    $colorProduct->save();
+                }
+                $colorSize = ColorSize::where('color_id', $detailProduct['color_id'])
+                    ->where('size_id', $detailProduct['size_id'])
+                    ->first();
+                if ($colorSize) {
+                    $colorSize->quantity += $detailProduct['quantity'];
+                    $colorSize->save();
+                } else {
+                    $colorSize = new ColorSize();
+                    $colorSize->color_id = $detailProduct['color_id'];
+                    $colorSize->size_id = $detailProduct['size_id'];
+                    $colorSize->quantity = $detailProduct['quantity'];
+                    $colorSize->save();
+                }
             }
         }
+        $product = Product::find($productId);
+        $product->quantity = $productTotalQuantity;
+        $product->save();
+        $this->redirect(route('product.index'));
     }
-
+    
     public function removeDetalleProducto($index)
     {
         unset($this->detailProducts[$index]);
-        $this->detailProducts  = array_values($this->detailProducts);
+        $this->detailProducts = array_values($this->detailProducts);
+        $this->detalleProductoIndex--;
     }
 
     public function goBack()

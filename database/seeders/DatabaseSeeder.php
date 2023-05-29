@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         Storage::disk('public')->makeDirectory('categories');
         Storage::disk('public')->makeDirectory('subcategories');
         Storage::disk('public')->makeDirectory('products');
+        $this->call(BrandSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(SubcategorySeeder::class);
         $this->call(ProductSeeder::class);

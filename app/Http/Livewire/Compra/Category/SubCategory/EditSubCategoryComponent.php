@@ -57,7 +57,6 @@ class EditSubCategoryComponent extends Component
     public function storeBrand()
     {
         $validatedData = $this->validate();
-
         $this->subcategory->name = $validatedData['name'];
         $this->subcategory->slug = $validatedData['slug'];
         $this->subcategory->category_id = $validatedData['category_id'];

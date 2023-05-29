@@ -12,13 +12,14 @@ class EditColorComponent extends Component
     use WithPagination;
     use WithFileUploads;
     public $color_id;
-    public $name, $titulo = 'Editar Color';
+    public $name, $slug, $titulo = 'Editar Color';
 
     public function mount($color_id)
     {
         $colors = Color::find($color_id);
         $this->color_id = $colors->id;
         $this->name = $colors->name;
+        $this->slug = $colors->slug;
     }
 
     public function updated($fields)
@@ -41,6 +42,7 @@ class EditColorComponent extends Component
         ]);
         $color = Color::find($this->color_id);
         $color->name = $this->name;
+        $color->slug = $this->slug;
         $color->save();
         session()->flash('message', 'Nueva Marca registrado!');
         return redirect()->route('color.index');

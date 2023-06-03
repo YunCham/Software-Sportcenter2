@@ -123,7 +123,7 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/compra/product/registro', CreateProductComponent::class)->name('product-registro');
      Route::get('/compra/product/editar/{detailproduct_id}', EditProductComponent::class)->name('product-editar');
     // Compra
-    Route::get('/compra/compra', CompraComponent::class)->name('compra.index');
+    Route::get('/compra/compra', CreateCompraComponent::class)->name('compra.index');
     Route::get('/compra/compra/registro', CreateCompraComponent::class)->name('compra-registro');
     Route::get('/compra/compra/editar/{compra_id}', EditCompraComponent::class)->name('compra-editar');
 });

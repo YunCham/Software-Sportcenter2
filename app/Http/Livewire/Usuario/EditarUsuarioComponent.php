@@ -70,9 +70,6 @@ class EditarUsuarioComponent extends Component
       // Lógica adicional si es necesario
       $this->redirect(route('usuario'));
     }
-  
-
-
 
     public function render()
     {

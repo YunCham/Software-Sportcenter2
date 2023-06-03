@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('detail_compras', function (Blueprint $table) {
             $table->id();
             $table->double('price')->default(0);
+            
             $table->integer('quantity')->default(0);
 
-            $table->unsignedBigInteger('compra_id')->nullable();
-            $table->foreign('compra_id')->references('id')->on('compras')->nullOnDelete();
-           
-            $table->unsignedBigInteger('detail_product_id')->nullable();
+            $table->unsignedBigInteger('compra_id')->nullable();            
+            $table->foreign('compra_id')->references('id')->on('compras')->nullOnDelete();           
+            
+            $table->unsignedBigInteger('detail_product_id')->nullable();            
             $table->foreign('detail_product_id')->references('id')->on('detail_products')->nullOnDelete();
         
             // $table->foreignId('producto_id')->nullable()->constrained('productos')->nullOnDelete();

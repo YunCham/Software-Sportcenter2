@@ -87,31 +87,7 @@ class CreateProductComponent extends Component
                 ]);
                 $newDetailProduct->save();
                 $productTotalQuantity += $newDetailProduct->quantity;                        
-                $colorProduct = ColorProduct::where('color_id', $detailProduct['color_id'])
-                ->where('product_id', $product->id)->first();
-                if ($colorProduct) {
-                    $colorProduct->quantity += $detailProduct['quantity'];
-                    $colorProduct->save();
-                } else {
-                    $colorProduct = new ColorProduct();
-                    $colorProduct->color_id = $detailProduct['color_id'];
-                    $colorProduct->product_id = $product->id;
-                    $colorProduct->quantity = $detailProduct['quantity'];
-                    $colorProduct->save();
-                }
-                $colorSize = ColorSize::where('color_id', $detailProduct['color_id'])
-                    ->where('size_id', $detailProduct['size_id'])
-                    ->first();
-                if ($colorSize) {
-                    $colorSize->quantity += $detailProduct['quantity'];
-                    $colorSize->save();
-                } else {
-                    $colorSize = new ColorSize();
-                    $colorSize->color_id = $detailProduct['color_id'];
-                    $colorSize->size_id = $detailProduct['size_id'];
-                    $colorSize->quantity = $detailProduct['quantity'];
-                    $colorSize->save();
-                }
+                $this->calculo($detailProduct, $product);
             }
         }
         $product = Product::find($productId);
@@ -120,6 +96,33 @@ class CreateProductComponent extends Component
         $this->redirect(route('product.index'));
     }
     
+    public function calculo($detailProduct, $product) {
+        $colorProduct = ColorProduct::where('color_id', $detailProduct['color_id'])
+            ->where('product_id', $product->id)->first();
+        if ($colorProduct) {
+            $colorProduct->quantity += $detailProduct['quantity'];
+            $colorProduct->save();
+        } else {
+            $colorProduct = new ColorProduct();
+            $colorProduct->color_id = $detailProduct['color_id'];
+            $colorProduct->product_id = $product->id;
+            $colorProduct->quantity = $detailProduct['quantity'];
+            $colorProduct->save();
+        }
+        $colorSize = ColorSize::where('color_id', $detailProduct['color_id'])
+            ->where('size_id', $detailProduct['size_id'])->first();
+        if ($colorSize) {
+            $colorSize->quantity += $detailProduct['quantity'];
+            $colorSize->save();
+        } else {
+            $colorSize = new ColorSize();
+            $colorSize->color_id = $detailProduct['color_id'];
+            $colorSize->size_id = $detailProduct['size_id'];
+            $colorSize->quantity = $detailProduct['quantity'];
+            $colorSize->save();
+        }
+    }
+
     public function removeDetalleProducto($index)
     {
         unset($this->detailProducts[$index]);

@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->double('price')->default(0);
             $table->integer('quantity')->default(0);
-            
+
+            $table->unsignedBigInteger('proveedor_id');            
+            $table->foreign('proveedor_id')->references('id')->on('proveedors')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

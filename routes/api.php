@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PersonalController;
 use App\Http\Controllers\Api\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('register' , RegisterController::class)->names('api.register');
+Route::apiResource('personal' , PersonalController::class)->names('api.personal');

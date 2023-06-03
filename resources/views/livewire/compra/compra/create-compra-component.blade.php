@@ -41,7 +41,7 @@
                     <form wire:submit.prevent='submitForm'>
                         <div class="row">
                             <div class="form-group">
-                                <label for="product_id">Seleccione Categoría:</label>
+                                <label for="product_id">Seleccione Producto:</label>
                                 <select wire:model="product_id" class="form-control @error('product_id') is-invalid @enderror" id="product_id">
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}">{{ $product->name }}</option>

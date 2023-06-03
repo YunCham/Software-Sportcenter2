@@ -41,24 +41,42 @@ class RegisterController extends Controller
         $user = User::findOrFail($id);
         return $user;
     }
-
-    public function update(Request $request, User $user) {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email,' . $user->id,
-        ], [
-            'name.required' => 'El campo nombre es obligatorio',
-            'email.unique' => 'El email ya se encuentra registrado',
-        ]);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->location = $request->location;
-        $user->about = $request->about;
-        $user->password = $request->password;
-        $user->personal_id = $request->personal_id;
-        $user->save();
-        return $user;
+    
+    public function update(Request $request, $id)
+    {
+        try {
+            $this->validate($request, [
+                'name' => 'required',                
+                //'email' => 'required|email|unique:users,email,' . $id,
+            ]);
+            // Buscar el usuario a actualizar
+            $user = User::findOrFail($id);
+            // Actualizar
+            $user->name = $request->input('name');
+            if ($request->has('email')) {
+                $user->email = $request->input('email');
+            }
+            if ($request->has('phone')) {
+                $user->phone = $request->input('phone');
+            }
+            if ($request->has('location')) {
+                $user->location = $request->input('location');
+            }
+            if ($request->has('about')) {
+                $user->about = $request->input('about');
+            }
+            if ($request->has('password')) {
+                $user->password = $request->input('password');
+            }
+            if ($request->has('personal_id')) {
+                $user->personal_id = $request->input('personal_id');
+            }
+            // Guardar los cambios
+            $user->save();
+            return response()->json(['message' => 'Usuario actualizado correctamente']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al actualizar el usuario'], 500);
+        }
     }
 
     public function destroy($id) {
@@ -67,4 +85,3 @@ class RegisterController extends Controller
         return $user;
     }
 }
-

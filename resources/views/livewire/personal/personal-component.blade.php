@@ -183,7 +183,7 @@
                           </ul>
                         </nav> --}}
 
-                        {{ $personales->links() }}
+                       
                     </div>
                 </div>
             </div>

@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         $usuarios = [
             //nro 1
             [
-                'name' => 'Juan Pablo Rodriguez',
-                'email' => 'pablojuan123sc@gmail.com',
+                'name' => 'Eduardo Rojas Calderon',
+                'email' => 'calderoneduardo123sc@gmail.com',
                 'password' => bcrypt('87654321')
             ],
             //nro 2

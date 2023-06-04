@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             'password' => ('secret')
         ]);
 
+
+
         $usuarios = [
             //nro 1
             [
@@ -74,6 +76,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MembresiaSeeder::class);
         $this->call(TipoServicioSeeder::class);
         $this->call(ServicioSeeder::class);
+        $this->call(ProveedorSeeder::class);
 
         /*Storage::disk('public')->makeDirectory('categories');
         Storage::disk('public')->makeDirectory('subcategories');

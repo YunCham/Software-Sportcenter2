@@ -77,7 +77,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">informacion</label>
+                                <label class="form-label">infromacion</label>
                                 <input wire:model="about" type="text" class="form-control border border-2 p-2">
                                 @error('about')
                                     <p class='text-danger inputerror'>{{ $message }} </p>

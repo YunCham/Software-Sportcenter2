@@ -11,17 +11,6 @@
                         <a class="btn bg-gradient-dark mb-0" href="{{ route('proveedor-registro') }}"><i
                                 class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a>                
                     </div>
-                    @if (session('status'))
-                    <div class="row">
-                        <div class="alert alert-success alert-dismissible text-white" role="alert">
-                            <span class="text-sm">{{ Session::get('status') }}</span>
-                            <button type="button" class="btn-close text-lg py-3 opacity-10"
-                                data-bs-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                  @endif
                 </div>
                 <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">
@@ -83,9 +72,9 @@
 
                                             <a href="#"
                                                 class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                data-original-title="Eliminar" data-bs-toggle="modal" data-bs-target="#modal-notification-{{ $user->id }}">
+                                                data-original-title="Eliminar" data-bs-toggle="modal" data-bs-target="#modal-notification">
                                                 Eliminar
-                                                <div class="modal fade" id="modal-notification-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
                                                   <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
                                                     <div class="modal-content">
                                                       <div class="modal-header">

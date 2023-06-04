@@ -43,7 +43,7 @@
 
                                 <label class="form-label">Nombre</label>
                                 <input wire:model="name" type="text" class="form-control border border-2 p-2">
-                                @error('name')
+                                @error('nanme')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
@@ -69,7 +69,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Ubicacion</label>
+                                <label class="form-label">ubicaion</label>
                                 <input wire:model="location" type="text" class="form-control border border-2 p-2">
                                 @error('location')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
@@ -78,7 +78,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Informacion</label>
+                                <label class="form-label">infromacion</label>
                                 <input wire:model="about" type="text" class="form-control border border-2 p-2">
                                 @error('about')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
@@ -87,7 +87,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Tipo de Proveedor</label>
+                                <label class="form-label">tipo de Proveedor</label>
                                 <input wire:model="tipo_proveedor" type="text" class="form-control border border-2 p-2">
                                 @error('tipo_proveedor')
                                     <p class='text-danger inputerror'>{{ $message }} </p>

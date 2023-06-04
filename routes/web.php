@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\proveedorController;
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
+use App\Http\Livewire\Inventario\InventarioComponent;
 
 use App\Http\Livewire\Notifications;
 //Para el personal
@@ -22,6 +24,9 @@ use App\Http\Livewire\Personal\PersonalComponent;
 use App\Http\Livewire\Personal\RegistrarPersonalComponent;
 //aparte
 use App\Http\Livewire\Profile;
+use App\Http\Livewire\Proveedor\EditarProveedorComponent;
+use App\Http\Livewire\Proveedor\ProveedorComponent;
+use App\Http\Livewire\Proveedor\RegistroProveedorComponent;
 use App\Http\Livewire\RTL;
 
 use App\Http\Livewire\StaticSignIn;
@@ -105,6 +110,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     //! routers usuario
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
+
+    // proovedor
+    Route::get('/proveedor', ProveedorComponent::class)->name('proveedor.index');
+    Route::get('/proveedor/registro', RegistroProveedorComponent::class)->name('proveedor-registro');
+    Route::get('/proveedor/editar/{proveedor_id}', EditarProveedorComponent::class)->name('proveedor-editar');
+
+    // inventario
+    Route::get('/inventario', InventarioComponent::class)->name('inventario.index');
     Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
     Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
 

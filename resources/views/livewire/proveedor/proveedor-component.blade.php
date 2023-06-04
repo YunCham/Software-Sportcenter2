@@ -11,6 +11,17 @@
                         <a class="btn bg-gradient-dark mb-0" href="{{ route('proveedor-registro') }}"><i
                                 class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a>                
                     </div>
+                    @if (session('status'))
+                    <div class="row">
+                        <div class="alert alert-success alert-dismissible text-white" role="alert">
+                            <span class="text-sm">{{ Session::get('status') }}</span>
+                            <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                data-bs-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                  @endif
                 </div>
                 <div class="card-body px-0 pb-2">
                     <div class="table-responsive p-0">

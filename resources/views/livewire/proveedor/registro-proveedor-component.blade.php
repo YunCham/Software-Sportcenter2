@@ -55,6 +55,7 @@
                                 @error('email')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
+                                
                             </div>
 
                             <div class="mb-3 col-md-6">
@@ -93,6 +94,17 @@
                                 @enderror
                             </div>                           
                         </div>
+                        @if (session('status'))
+                            <div class="row">
+                                <div class="alert alert-success alert-dismissible text-white" role="alert">
+                                    <span class="text-sm">{{ Session::get('status') }}</span>
+                                    <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                        data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
                         <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                         <button type="submit" class="btn bg-gradient-dark">Guardar</button>
                     </form>

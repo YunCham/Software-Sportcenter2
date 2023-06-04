@@ -25,6 +25,7 @@ class EditarProveedorComponent extends Component
     $this->proveedor_id = $proveedor->id;
     $this->name = $proveedor->name;
     $this->phone = $proveedor->phone;
+    $this->location = $proveedor->location;
     $this->email = $proveedor->email;
     $this->about = $proveedor->about;
     $this->tipo_proveedor = $proveedor->tipo_proveedor;
@@ -62,7 +63,7 @@ class EditarProveedorComponent extends Component
     $proveedor->location = $this->location;
     $proveedor->tipo_proveedor = $this->tipo_proveedor;
     $proveedor->save();
-    session()->flash('message', 'datos actulizados');
+    return redirect(route('proveedor.index'))->with('status', 'Datos actualizados!');
   }
 
     public function goBack()

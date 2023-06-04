@@ -6,6 +6,9 @@ use App\Models\proveedor;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+use Illuminate\Validation\Rule;
+
+
 class RegistroProveedorComponent extends Component
 {
     use WithFileUploads;
@@ -19,7 +22,7 @@ class RegistroProveedorComponent extends Component
     public function updated($fields){
         $this->validateOnly($fields, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:proveedors',
             'phone' => 'required',
             'about' => 'required|max:100',
             'location' => 'required',
@@ -32,12 +35,20 @@ class RegistroProveedorComponent extends Component
     {
     $this->validate([
         'name' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:proveedors'/*['required', 'email', Rule::unique('proveedor')]*/,
         'phone' => 'required',
         'about' => 'required|max:100',
         'location' => 'required',
         'tipo_proveedor' => 'required',
     ]);
+  //  'email' => ['required', 'email', Rule::unique('users')],
+
+  /*  $emails = proveedor::all();
+    foreach($emails as $email){
+        if($email>'email' == $this->'email'){
+            return 
+        }
+    }*/
     $proveedor = new proveedor();
     $proveedor->name = $this->name;
     $proveedor->email = $this->email;
@@ -46,7 +57,8 @@ class RegistroProveedorComponent extends Component
     $proveedor->location = $this->location;
     $proveedor->tipo_proveedor = $this->tipo_proveedor;
     $proveedor->save();
-    session()->flash('message', 'Nuevo Personal registrado!');
+    return redirect(route('proveedor.index'))->with('status', 'Nuevo PROVEEDPR registrado!');
+    //session()->flash('message', 'Nuevo Personal registrado!');
     }
 
   public function goBack()

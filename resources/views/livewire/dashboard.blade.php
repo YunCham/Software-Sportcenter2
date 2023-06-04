@@ -560,12 +560,12 @@
           </div>
       </div>
   </div>
-  </div>
+</div>
+
   @push('js')
   <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
   <script>
       var ctx = document.getElementById("chart-bars").getContext("2d");
-
       new Chart(ctx, {
           type: "bar",
           data: {
@@ -643,10 +643,7 @@
               },
           },
       });
-
-
       var ctx2 = document.getElementById("chart-line").getContext("2d");
-
       new Chart(ctx2, {
           type: "line",
           data: {
@@ -665,7 +662,6 @@
                   fill: true,
                   data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
                   maxBarThickness: 6
-
               }],
           },
           options: {
@@ -727,9 +723,7 @@
               },
           },
       });
-
       var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
       new Chart(ctx3, {
           type: "line",
           data: {
@@ -747,7 +741,6 @@
                   fill: true,
                   data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
                   maxBarThickness: 6
-
               }],
           },
           options: {
@@ -809,6 +802,5 @@
               },
           },
       });
-
   </script>
   @endpush

@@ -14,17 +14,7 @@
                     </div>
                 </div>
                 <div class="card-body p-3">
-                    @if (session('status'))
-                        <div class="row">
-                            <div class="alert alert-success alert-dismissible text-white" role="alert">
-                                <span class="text-sm">{{ Session::get('status') }}</span>
-                                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    @endif
+                    
                     @if (Session::has('demo'))
                         <div class="row">
                             <div class="alert alert-danger alert-dismissible text-white" role="alert">
@@ -79,9 +69,10 @@
                             <div class="mb-3 col-md-6">
 
                                 <label class="form-label">Genero</label>
-                                <select name="genero" wire:model="genero"class="form-control border border-2 p-2">
-                                    <option value="0">Femenino</option>
-                                    <option value="1">Masculino</option>
+                                <select name="genero" wire:model="genero" class="form-control border border-2 p-2">
+                                    <option value="">Seleccionar género</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Masculino">Masculino</option>
                                 </select>
                                 @error('genero')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
@@ -116,7 +107,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Calles</label>
+                                <label class="form-label">Calle</label>
                                 <input wire:model="calle" type="text" class="form-control border border-2 p-2">
                                 @error('calle')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
@@ -125,7 +116,7 @@
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Numeor de Domicilio</label>
+                                <label class="form-label">Numero de Domicilio</label>
                                 <input wire:model="n_casa" type="text" class="form-control border border-2 p-2">
                                 @error('n_casa')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
@@ -176,10 +167,34 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">Estado</label>
+                                <select class="form-control border border-2 p-2" name="estado" id=""
+                                    wire:model="estado">
+                                    <option value="">Selecione Estado</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                                @error('estado')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                            </div>
                         </div>
+                        @if (session('status'))
+                        <div class="row">
+                            <div class="alert alert-success alert-dismissible text-white" role="alert">
+                                <span class="text-sm">{{ Session::get('status') }}</span>
+                                <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
                         <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                         <button type="submit" class="btn bg-gradient-dark">Guardar</button>
                     </form>
+                
                 </div>
             </div>
         </div>

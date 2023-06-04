@@ -27,7 +27,10 @@
                                         funcion</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Status</th>
+                                        Sueldo</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Estado</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Fin de Contrato</th>
@@ -60,8 +63,16 @@
                                                 {{ $personal->fecha_inicio_contrato }}</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span class="badge badge-sm bg-gradient-success">{{ $personal->salario }}
-                                                bs.</span>
+                                            <p class="text-xm font-weight-bold mb-0">{{ $personal->salario }} bs.</p>
+                                        </td>
+                                        <td>
+                                            <p class="align-middle text-center text-sm">
+                                                @if ($personal->estado == 'Activo')
+                                                <span class="badge badge-sm bg-gradient-success">Activo</span>
+                                                @else
+                                                <span class="badge badge-sm bg-gradient-secondary">Desactivo</span>
+                                                @endif
+                                            </p>
                                         </td>
                                         <td class="align-middle text-center">
                                             <span
@@ -76,44 +87,69 @@
                                         </td>
                                         <td class="align-middle">
 
-                                            <a href="#"
-                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                data-original-title="Eliminar" data-bs-toggle="modal" data-bs-target="#modal-notification">
+                                            <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Eliminar"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-notification-{{ $personal->id }}">
                                                 Eliminar
-                                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                                  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                                    <div class="modal-content">
-                                                      <div class="modal-header">
-                                                        <h6 class="modal-title font-weight-normal" id="modal-title-notification">Se requiere tu atención!!!</h6>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                          <span aria-hidden="true">×</span>
-                                                        </button>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <div class="py-3 text-center">
-                                                          <i class="material-icons h1 text-secondary">
-                                                            Eliminar Personal
-                                                          </i>
-                                                          <h4 class="text-gradient text-danger mt-4">Esta seguro!</h4>
-                                                          <p>Paso a Paso</p>
+                                                <div class="modal fade" id="modal-notification-{{ $personal->id }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="modal-notification"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-danger modal-dialog-centered modal-"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h6 class="modal-title font-weight-normal"
+                                                                    id="modal-title-notification">Se requiere tu
+                                                                    atención!!!</h6>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="py-3 text-center">
+                                                                    <i class="material-icons h1 text-secondary">
+                                                                        Eliminar Personal
+                                                                    </i>
+                                                                    <h4 class="text-gradient text-danger mt-4">Esta
+                                                                        seguro!</h4>
+                                                                    <p>Paso a Paso</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm"wire:click="deletePersonal({{ $personal->id }})">Eliminar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-secondary btn-sm">Cancelar</button>
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary btn-sm"wire:click="deletePersonal({{ $personal->id }})">Eliminar</button>
-                                                        <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
-                                                       </button>
-                                                      </div>
                                                     </div>
-                                                  </div>
                                                 </div>
 
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if (session()->has('message') && $deletedPersonalId)
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="alert alert-success alert-dismissible text-white"
+                                                role="alert">
+                                                <span class="text-sm">{{ session('message') }}</span>
+                                                <button type="button" class="btn-close text-lg py-3 opacity-10"
+                                                    data-bs-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
-{{--
+                        {{--
                         <nav aria-label="Page navigation example">
                           <ul class="pagination justify-content-end">
                         
@@ -147,7 +183,7 @@
                           </ul>
                         </nav> --}}
 
-                        {{ $personales->links() }}
+                       
                     </div>
                 </div>
             </div>

@@ -25,6 +25,7 @@ class EditarPersonalComponent extends Component
   public $salario;
   public $fecha_inicio_contrato;
   public $fecha_fin_contrato;
+  public $estado;
 
 
   public function mount($personal_id)
@@ -44,6 +45,7 @@ class EditarPersonalComponent extends Component
     $this->salario = $personal->salario;
     $this->fecha_inicio_contrato = $personal->fecha_inicio_contrato;
     $this->fecha_fin_contrato = $personal->fecha_fin_contrato;
+    $this->estado = $personal->estado;
   }
 
   public function updated($fields)
@@ -59,11 +61,12 @@ class EditarPersonalComponent extends Component
       'calle' => 'required',
       'n_casa' => 'required',
       'fecha_inicio_contrato' => 'required',
-      'fecha_fin_contrato' => 'required'
+      'fecha_fin_contrato' => 'required',
+      'estado' => 'required'
     ]);
   }
 
-  //implementacio de la funcion donde Edita los datos
+  //implementacion de la funcion donde Edita los datos
   public function updatePersonal()
   {
     $this->validate([
@@ -77,7 +80,8 @@ class EditarPersonalComponent extends Component
       'calle' => 'required',
       'n_casa' => 'required',
       'fecha_inicio_contrato' => 'required',
-      'fecha_fin_contrato' => 'required'
+      'fecha_fin_contrato' => 'required',
+      'estado' => 'required'
     ]);
     $personal = Personal::find($this->personal_id);
     $personal->ci = $this->ci;
@@ -93,8 +97,9 @@ class EditarPersonalComponent extends Component
     $personal->salario = $this->salario;
     $personal->fecha_inicio_contrato = $this->fecha_inicio_contrato;
     $personal->fecha_fin_contrato = $this->fecha_fin_contrato;
+    $personal->estado = $this->estado;
     $personal->save();
-    session()->flash('message', 'Datos actualizados!');
+    session()->flash('status', 'Datos actualizados!');
   }
   
    //función para retroceder

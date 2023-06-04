@@ -23,6 +23,7 @@ class RegistrarPersonalComponent extends Component
   public $salario;
   public $fecha_inicio_contrato;
   public $fecha_fin_contrato;
+  public $estado;
 
 
 
@@ -36,10 +37,15 @@ class RegistrarPersonalComponent extends Component
       'genero' => 'required',
       'telefono' => 'required',
       'distrito' => 'required',
+      'salario' => 'nullable|numeric|regex:/^\d{1,10}(\.\d{1,2})?$/',
       'calle' => 'required',
-      'n_casa' => 'required',
+      'n_casa' => 'required|numeric|regex:/^\d+$/',
       'fecha_inicio_contrato' => 'required',
-      'fecha_fin_contrato' => 'required'
+      'fecha_fin_contrato' => 'required',
+      'estado' => 'required'
+    ], [
+      'n_casa.regex' => 'El número de casa debe ser un valor numérico sin puntos decimales.',
+      'salario.regex' => 'El salario debe ser un valor decimal válido con hasta 10 dígitos enteros y hasta 2 dígitos decimales.'
     ]);
   }
 
@@ -53,10 +59,15 @@ class RegistrarPersonalComponent extends Component
       'genero' => 'required',
       'telefono' => 'required',
       'distrito' => 'required',
+      'salario' => 'nullable|numeric|regex:/^\d{1,10}(\.\d{1,2})?$/',
       'calle' => 'required',
-      'n_casa' => 'required',
+      'n_casa' => 'required|numeric|regex:/^\d+$/',
       'fecha_inicio_contrato' => 'required',
-      'fecha_fin_contrato' => 'required'
+      'fecha_fin_contrato' => 'required',
+      'estado' => 'required'
+    ], [
+      'n_casa.regex' => 'El número de casa debe ser un valor numérico sin puntos decimales.',
+      'salario.regex' => 'El salario debe ser un valor decimal válido con hasta 10 dígitos enteros y hasta 2 dígitos decimales.'
     ]);
     $personal = new Personal();
     $personal->ci = $this->ci;
@@ -72,15 +83,16 @@ class RegistrarPersonalComponent extends Component
     $personal->salario = $this->salario;
     $personal->fecha_inicio_contrato = $this->fecha_inicio_contrato;
     $personal->fecha_fin_contrato = $this->fecha_fin_contrato;
+    $personal->estado = $this->estado;
     $personal->save();
-    session()->flash('message', 'Nuevo Personal registrado!');
+    session()->flash('status', 'Nuevo PERSONAL registrado!');
   }
 
   //función para retroceder
   public function goBack()
   {
-      // Lógica adicional si es necesario
-      $this->redirect(route('perosnal.index'));
+    // Lógica adicional si es necesario
+    $this->redirect(route('perosnal.index'));
   }
 
   public function render()

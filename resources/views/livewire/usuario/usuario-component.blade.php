@@ -8,8 +8,8 @@
                     </div>
                     {{-- boton añadir --}}
                     <div class=" me-3 my-3 text-end">
-                        {{-- <a class="btn bg-gradient-dark mb-0" href="{{ route('personal-registro') }}"><i
-                                class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a> --}}
+                        <a class="btn bg-gradient-dark mb-0" href="{{ route('usuario-registro') }}"><i
+                                class="material-icons text-sm">add</i>&nbsp;&nbsp;Registrar</a>
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
@@ -27,7 +27,7 @@
                                         localización</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Token</th>
+                                        Personal</th>
                                     {{-- <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Fin de Contrato</th> --}}
@@ -51,7 +51,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-xm font-weight-bold mb-0">{{ $user->email }}</p>
+                                            <p class="text-secondary text-xs font-weight-bold">{{ $user->email }}</p>
                                             {{-- <p class="text-xs text-secondary mb-0">{{$user->nombre}}</p> --}}
                                         </td>
                                         <td>
@@ -65,46 +65,55 @@
                                         </td> --}}
                                         <td class="align-middle text-center">
                                             <span
-                                                class="text-secondary text-xs font-weight-bold">{{ $user->remember_token }}</span>
+                                                class="text-secondary text-xs font-weight-bold">{{ $user->personal->nombre ?? 'Sin nombre'}}</span>
                                         </td>
-                                        {{-- <td class="align-middle">
+                                        <td class="align-middle">
                                             <a href="{{ route('usuario-editar', ['user_id' => $user->id]) }}"
                                                 class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                                 data-original-title="Edit user">
                                                 Editar
                                             </a>
-                                        </td> --}}
+                                        </td>
                                         <td class="align-middle">
 
-                                            <a href="#"
-                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                data-original-title="Eliminar" data-bs-toggle="modal" data-bs-target="#modal-notification">
+                                            <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Eliminar"
+                                                data-bs-toggle="modal" data-bs-target="#modal-notification">
                                                 Eliminar
-                                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                                  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                                    <div class="modal-content">
-                                                      <div class="modal-header">
-                                                        <h6 class="modal-title font-weight-normal" id="modal-title-notification">Se requiere tu atención!!!</h6>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                                          <span aria-hidden="true">×</span>
-                                                        </button>
-                                                      </div>
-                                                      <div class="modal-body">
-                                                        <div class="py-3 text-center">
-                                                          <i class="material-icons h1 text-secondary">
-                                                            Eliminar Usuario
-                                                          </i>
-                                                          <h4 class="text-gradient text-danger mt-4">Esta seguro!</h4>
-                                                          <p>Paso a Paso</p>
+                                                <div class="modal fade" id="modal-notification" tabindex="-1"
+                                                    role="dialog" aria-labelledby="modal-notification"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-danger modal-dialog-centered modal-"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h6 class="modal-title font-weight-normal"
+                                                                    id="modal-title-notification">Se requiere tu
+                                                                    atención!!!</h6>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="py-3 text-center">
+                                                                    <i class="material-icons h1 text-secondary">
+                                                                        Eliminar Usuario
+                                                                    </i>
+                                                                    <h4 class="text-gradient text-danger mt-4">Esta
+                                                                        seguro!</h4>
+                                                                    <p>Paso a Paso</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                    class="btn btn-primary btn-sm"wire:click="deleteUsuario({{ $user->id }})">Eliminar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-secondary btn-sm">Cancelar</button>
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                      </div>
-                                                      <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary btn-sm"wire:click="deleteUsuario({{ $user->id }})">Eliminar</button>
-                                                        <button type="button" class="btn btn-secondary btn-sm">Cancelar</button>
-                                                       </button>
-                                                      </div>
                                                     </div>
-                                                  </div>
                                                 </div>
 
                                             </a>
@@ -113,7 +122,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-{{--
+                        {{--
                         <nav aria-label="Page navigation example">
                           <ul class="pagination justify-content-end">
                         

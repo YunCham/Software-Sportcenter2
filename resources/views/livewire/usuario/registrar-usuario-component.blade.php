@@ -9,7 +9,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-3">Datos personales</h6>
+                            <h6 class="mb-3">Datos Usuario</h6>
                         </div>
                     </div>
                 </div>
@@ -36,143 +36,72 @@
                             </div>
                         </div>
                     @endif
+                    {{-- alerta --}}
+                    @if (Session::has('message'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">{{ Session::get('message') }}
+                        </div>
+                    @endif
                     <form wire:submit.prevent='storeUsuario'>
                         <div class="row">
 
                             <div class="mb-3 col-md-6">
 
                                 <label class="form-label">Nombre</label>
-                                <input wire:model="nombre" type="text" class="form-control border border-2 p-2">
-                                @error('nombre')
+                                <input wire:model="name" type="text" class="form-control border border-2 p-2">
+                                @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Apellidos</label>
-                                <input wire:model="apellidos" name="apellidos" type="text" class="form-control border border-2 p-2">
-                                @error('apellidos')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Carnet de Identidad</label>
-                                <input wire:model="ci" type="text" class="form-control border border-2 p-2">
-                                @error('ci')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Fecha de Nacimiento</label>
-                                <input wire:model="fecha_nacimiento" type="date"
+                                <label class="form-label">Correo Eleccion</label>
+                                <input wire:model="email" name="email" type="text"
                                     class="form-control border border-2 p-2">
-                                @error('fecha_nacimiento')
+                                @error('email')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
 
-                                <label class="form-label">Genero</label>
-                                <select name="genero" wire:model="genero"class="form-control border border-2 p-2">
-                                    <option value="0">Femenino</option>
-                                    <option value="1">Masculino</option>
+                                <label class="form-label">Contraseña</label>
+                                <input wire:model="password" type="password" class="form-control border border-2 p-2">
+                                @error('password')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+
+                                <label class="form-label">Ciudad</label>
+                                <input wire:model="location" type="location" class="form-control border border-2 p-2">
+                                @error('location')
+                                    <p class='text-danger inputerror'>{{ $message }} </p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+
+                                <label class="form-label">Personal</label>
+                                <select class="form-control border border-2 p-2" name="personal_id" id=""
+                                    wire:model="personal_id">
+                                    <option value="">Selecione al perosnal</option>
+                                    @foreach ($personales as $personal)
+                                        <option value="{{ $personal->id }}">{{ $personal->nombre }}</option>
+                                    @endforeach
                                 </select>
-                                @error('genero')
+                                @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
 
-                            <div class="card-header pb-0 p-3">
-                                <div class="row">
-                                    <div class="col-md-8 d-flex align-items-center">
-                                        <h6 class="mb-3">Datos de contacto</h6>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="mb-3 col-md-12">
 
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Telefono</label>
-                                <input wire:model="telefono" type="text" class="form-control border border-2 p-2">
-                                @error('telefono')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Distrito</label>
-                                <input wire:model="distrito" type="text" class="form-control border border-2 p-2">
-                                @error('distrito')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Calles</label>
-                                <input wire:model="calle" type="text" class="form-control border border-2 p-2">
-                                @error('calle')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Numeor de Domicilio</label>
-                                <input wire:model="n_casa" type="text" class="form-control border border-2 p-2">
-                                @error('n_casa')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="card-header pb-0 p-3">
-                                <div class="row">
-                                    <div class="col-md-8 d-flex align-items-center">
-                                        <h6 class="mb-3">Datos del Empleo</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Cargo</label>
-                                <input wire:model="cargo" type="text" class="form-control border border-2 p-2">
-                                @error('cargo')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Salario Mensual</label>
-                                <input wire:model="salario" type="text" class="form-control border border-2 p-2">
-                                @error('salario')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Fecha de Contrato</label>
-                                <input wire:model="fecha_inicio_contrato" name="fecha_inicio_contrato"type="date"
-                                    class="form-control border border-2 p-2">
-                                @error('fecha_inicio_contrato')
-                                    <p class='text-danger inputerror'>{{ $message }} </p>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-
-                                <label class="form-label">Fin del contrato</label>
-                                <input wire:model="fecha_fin_contrato" name="fecha_fin_contrato" type="date"
-                                    class="form-control border border-2 p-2">
-                                @error('fecha_fin_contrato')
+                                <label for="floatingTextarea2">Acerca:</label>
+                                <textarea wire:model="about" class="form-control border border-2 p-2" placeholder=" Say something about yourself"
+                                    id="floatingTextarea2" rows="4" cols="50"></textarea>
+                                @error('about')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>

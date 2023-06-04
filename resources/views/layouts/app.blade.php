@@ -18,7 +18,6 @@
         @else
         {{ $slot }}
         @endif
-
     @elseif (in_array(request()->route()->getName(),['rtl']))
     {{ $slot }}
     @elseif (in_array(request()->route()->getName(),['virtual-reality']))
@@ -29,7 +28,6 @@
             <x-navbars.sidebar></x-navbars.sidebar>
             <main class="main-content border-radius-lg h-100">
                 {{  $slot }}
-
         </div>
         <x-footers.auth></x-footers.auth>
         </main>
@@ -39,9 +37,7 @@
     <x-navbars.sidebar></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <x-navbars.navs.auth></x-navbars.navs.auth>
-
         {{ $slot }}
-
         <x-footers.auth></x-footers.auth>
     </main>
     <x-plugins></x-plugins>

@@ -43,7 +43,7 @@
 
                                 <label class="form-label">Nombre</label>
                                 <input wire:model="name" type="text" class="form-control border border-2 p-2">
-                                @error('nanme')
+                                @error('name')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>

@@ -150,10 +150,10 @@
                             <a class="nav-link" href="#">Producto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Marca</a>
+                            <a class="nav-link" href="{{Route('marca.index')}}">Marca</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Categoría</a>
+                            <a class="nav-link" href="{{Route('categoria.index')}}">Categoría</a>
                         </li>
                     </ul>
                 </div>

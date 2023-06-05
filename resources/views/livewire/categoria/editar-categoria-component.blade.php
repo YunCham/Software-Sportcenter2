@@ -9,7 +9,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-3">Datos de la Marca</h6>
+                            <h6 class="mb-3">Datos de la categoria</h6>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,11 @@
                             </div>
                         </div>
                     @endif
-                    <form wire:submit.prevent='storeMarca'>
+                    {{-- alerta --}}
+                    @if (Session::has('message'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">{{ Session::get('message') }}</div>
+                    @endif
+                    <form wire:submit.prevent='updateCategoria'>
                         <div class="row">
 
                             <div class="mb-3 col-md-6">
@@ -46,9 +50,7 @@
                                 @error('nombre')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
-                            </div>                              
-
-                           
+                            </div>
                         </div>
                         <button type="button" wire:click="goBack()" class="btn bg-gradient-dark">Cancelar</button>
                         <button type="submit" class="btn bg-gradient-dark">Guardar</button>

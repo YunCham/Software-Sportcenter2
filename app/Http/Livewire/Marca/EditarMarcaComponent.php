@@ -21,7 +21,7 @@ class EditarMarcaComponent extends Component
             'nombre' => 'required',
         ]);
     }
-    public function updateTipoServicio()
+    public function updateMarca()
     {
         $this->validate([
             'nombre' => 'required',
@@ -29,7 +29,8 @@ class EditarMarcaComponent extends Component
         $marca= Marca::find($this->marca_id);
         $marca->nombre = $this->nombre;
         $marca->save();
-        session()->flash('status', 'Datos actualizados!');
+        //session()->flash('status', 'Datos actualizados!');
+        return redirect(route('marca.index'))->with('status', 'Datos actualizados!');
     }
 
     //función para retroceder

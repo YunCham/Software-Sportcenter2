@@ -9,7 +9,7 @@
                 <div class="card-header pb-0 p-3">
                     <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
-                            <h6 class="mb-3">Datos de la Marca</h6>
+                            <h6 class="mb-3">Datos de la Categoria</h6>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     @endif
-                    <form wire:submit.prevent='storeMarca'>
+                    <form wire:submit.prevent='storeCategoria'>
                         <div class="row">
 
                             <div class="mb-3 col-md-6">

@@ -53,6 +53,11 @@ use App\Http\Livewire\Marca\EditarMarcaComponent;
 use App\Http\Livewire\Categoria\CategoriaComponent;
 use App\Http\Livewire\Categoria\RegistrarCategoriaComponent;
 use App\Http\Livewire\Categoria\EditarCategoriaComponent;
+
+//Para los productos
+use App\Http\Livewire\Producto\ProductoComponent;
+use App\Http\Livewire\Producto\RegistrarProductoComponent;
+use App\Http\Livewire\Producto\EditarProductoComponent;
 //aparte
 use GuzzleHttp\Middleware;
 
@@ -129,4 +134,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/categoria', CategoriaComponent::class)->name('categoria.index');
     Route::get('/categoria/registrar', RegistrarCategoriaComponent::class)->name('categoria.registrar');
     Route::get('/categoria/editar/{categoria_id}', EditarCategoriaComponent::class)->name('categoria.editar');
+
+     //Para los productos
+     Route::get('/producto', ProductoComponent::class)->name('producto.index');
+     Route::get('/producto/registrar', RegistrarProductoComponent::class)->name('producto.registrar');
+     Route::get('/producto/editar/{producto_id}', EditarProductoComponent::class)->name('producto.editar');
 });

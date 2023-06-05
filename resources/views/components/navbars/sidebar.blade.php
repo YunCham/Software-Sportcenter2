@@ -147,7 +147,7 @@
                 <div class="collapse" id="collapseMenu3">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Producto</a>
+                            <a class="nav-link" href="{{route('producto.index')}}">Producto</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{Route('marca.index')}}">Marca</a>

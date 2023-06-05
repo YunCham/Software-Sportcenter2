@@ -1,4 +1,0 @@
-<div>
-    {{ $brand->name }}
-
-</div>

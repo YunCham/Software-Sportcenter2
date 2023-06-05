@@ -68,8 +68,8 @@
                 </a>
                 <div class="collapse" id="collapseMenu">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="{{route('perosnal.index')}}">Personal</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('usuario')}}">Usuario</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('perosnal.index') }}">Personal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('usuario') }}">Usuario</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Something else here</a></li>
                     </ul>
                 </div>
@@ -126,11 +126,12 @@
                 </a>
                 <div class="collapse" id="collapseMenu2">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('marca.index') }}">Marca</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('categoria.index') }}">Categoria</a>
+                        <li class="nav-item"><a class="nav-link" href="#">Producto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Marca</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Categoria</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{route('proveedor.index')}}">Proveedor</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('proveedor.index') }}">Proveedor</a>
+                        </li>
                     </ul>
                 </div>
             </li>

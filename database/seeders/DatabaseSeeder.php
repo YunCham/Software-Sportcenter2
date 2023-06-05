@@ -78,16 +78,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ServicioSeeder::class);
         $this->call(ProveedorSeeder::class);
 
-        /*Storage::disk('public')->makeDirectory('categories');
-        Storage::disk('public')->makeDirectory('subcategories');
-        Storage::disk('public')->makeDirectory('products');*/
-        /*$this->call(CategorySeeder::class);
-        $this->call(SubcategorySeeder::class);
-        $this->call(ProductSeeder::class);
-        $this->call(ColorSeeder::class);
-        $this->call(ColorProductSeeder::class);
-        $this->call(SizeSeeder::class);
-        $this->call(ColorSizeSeeder::class);    */ 
+       
         
     }
 }

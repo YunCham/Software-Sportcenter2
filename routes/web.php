@@ -1,21 +1,14 @@
 <?php
 
-use App\Http\Controllers\proveedorController;
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Billing;
-use App\Http\Livewire\Compra\Brand\BrandComponent;
-use App\Http\Livewire\Compra\Brand\EditBrandComponent;
-use App\Http\Livewire\Compra\Brand\RegistroBrandComponent;
-use App\Http\Livewire\Compra\Brand\ShowBrandComponent;
-use App\Http\Livewire\Compra\Category\CategoryComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ExampleLaravel\UserManagement;
 use App\Http\Livewire\ExampleLaravel\UserProfile;
-use App\Http\Livewire\Inventario\InventarioComponent;
 
 use App\Http\Livewire\Notifications;
 //Para el personal
@@ -108,23 +101,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/membresia/registrar',RegistrarMembresiaComponent::class)->name('membresia-registrar');
     Route::get('/membresia/editar/{membresia_id}',EditarMembresiaComponent::class)->name('membresia-editar');
 
-    //! routers usuario
+    //! routers usuario con errores CORREGIR!!!!
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
+    Route::get('/usuario/registrar', RegistrarUsuarioComponent::class)->name('usuario-registro');
+    Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
 
     // proovedor
     Route::get('/proveedor', ProveedorComponent::class)->name('proveedor.index');
     Route::get('/proveedor/registro', RegistroProveedorComponent::class)->name('proveedor-registro');
     Route::get('/proveedor/editar/{proveedor_id}', EditarProveedorComponent::class)->name('proveedor-editar');
 
-    // inventario
-    Route::get('/inventario', InventarioComponent::class)->name('inventario.index');
-    Route::get('/usuario/registro', RegistrarUsuarioComponent::class)->name('usuario-registro');
-    Route::get('/usuario/editar/{user_id}', EditarUsuarioComponent::class)->name('usuario-editar');
+   
 
-    Route::get('/compra/brand', BrandComponent::class)->name('marca.index');
-    Route::get('/compra/brand/editar/{marca_id}', EditBrandComponent::class)->name('marca-editar');
-    Route::get('compra/brand/{brand}', ShowBrandComponent::class)->name('brand.show');
-
-    Route::get('/compra/category', CategoryComponent::class)->name('categoria.index');
-
+   
 });

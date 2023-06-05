@@ -120,15 +120,13 @@
                     href="#" id="navbarDropdown2" role="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseMenu2" aria-expanded="false" aria-controls="collapseMenu2">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
+                        <i class="material-icons opacity-10">shopping_cart</i>
                     </div>
-                    <span class="nav-link-text ms-1">Administrar Compras</span>
+                    <span class="nav-link-text ms-1">Compras</span>
                 </a>
                 <div class="collapse" id="collapseMenu2">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Producto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Marca</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Categoria</a>
+                        <li class="nav-item"><a class="nav-link" href="#">Nota de compra</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('proveedor.index') }}">Proveedor</a>
                         </li>
@@ -136,8 +134,77 @@
                 </div>
             </li>
 
-
-
+            {{-- Administracion de productos --}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'productos' ? ' active bg-gradient-primary' : '' }}"
+                    href="#" id="navbarDropdown3" role="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseMenu3" aria-expanded="false" aria-controls="collapseMenu3">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">shopping_bag</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Productos</span>
+                </a>
+                <div class="collapse" id="collapseMenu3">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Producto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Marca</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Categoría</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- Administracion de inventarios --}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'inventarios' ? ' active bg-gradient-primary' : '' }}"
+                    href="#" id="navbarDropdown4" role="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseMenu4" aria-expanded="false" aria-controls="collapseMenu4">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">inventory_2</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Inventario</span>
+                </a>
+                <div class="collapse" id="collapseMenu4">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inventario de productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inventario- Areas deportivas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inventario- Areas comunes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nota de salida</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- Para las areas deportivas --}}
+            <li class="nav-item">
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }} "
+                    href="#">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">sports_soccer</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Areas Deportivas</span>
+                </a>
+            </li>
+            {{-- Para las areas comunes --}}
+            <li class="nav-item">
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }} "
+                    href="#">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">meeting_room</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Areas Comunes</span>
+                </a>
+            </li>
 
             {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="collapse" data-bs-target="#collapseMenu" aria-expanded="false" aria-controls="collapseMenu">

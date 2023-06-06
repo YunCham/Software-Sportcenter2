@@ -44,6 +44,26 @@ use App\Http\Livewire\Membresia\MembresiaComponent;
 use App\Http\Livewire\Membresia\RegistrarMembresiaComponent;
 use App\Http\Livewire\Membresia\EditarMembresiaComponent;
 
+//Para las marcas
+use App\Http\Livewire\Marca\MarcaComponent;
+use App\Http\Livewire\Marca\RegistrarMarcaComponent;
+use App\Http\Livewire\Marca\EditarMarcaComponent;
+
+//Para las categorias
+use App\Http\Livewire\Categoria\CategoriaComponent;
+use App\Http\Livewire\Categoria\RegistrarCategoriaComponent;
+use App\Http\Livewire\Categoria\EditarCategoriaComponent;
+
+//Para los productos
+use App\Http\Livewire\Producto\ProductoComponent;
+use App\Http\Livewire\Producto\RegistrarProductoComponent;
+use App\Http\Livewire\Producto\EditarProductoComponent;
+
+//Para las nota de compras
+use App\Http\Livewire\NotaCompra\NotaCompraComponent;
+use App\Http\Livewire\NotaCompra\RegistrarNotaCompraComponent;
+use App\Http\Livewire\NotaCompra\EditarNotaCompraComponent;
+
 //aparte
 use GuzzleHttp\Middleware;
 
@@ -98,8 +118,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Membresias
     Route::get('/membresias', MembresiaComponent::class)->name('membresia');
-    Route::get('/membresia/registrar',RegistrarMembresiaComponent::class)->name('membresia-registrar');
-    Route::get('/membresia/editar/{membresia_id}',EditarMembresiaComponent::class)->name('membresia-editar');
+    Route::get('/membresia/registrar', RegistrarMembresiaComponent::class)->name('membresia-registrar');
+    Route::get('/membresia/editar/{membresia_id}', EditarMembresiaComponent::class)->name('membresia-editar');
 
     //! routers usuario con errores CORREGIR!!!!
     Route::get('/usuario', UsuarioComponent::class)->name('usuario');
@@ -111,7 +131,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/proveedor/registro', RegistroProveedorComponent::class)->name('proveedor-registro');
     Route::get('/proveedor/editar/{proveedor_id}', EditarProveedorComponent::class)->name('proveedor-editar');
 
-   
+    //Para las marcas
+    Route::get('/marca', MarcaComponent::class)->name('marca.index');
+    Route::get('/marca/registrar', RegistrarMarcaComponent::class)->name('marca.registrar');
+    Route::get('/marca/editar/{marca_id}', EditarMarcaComponent::class)->name('marca.editar');
 
-   
+    //Para las categorias
+    Route::get('/categoria', CategoriaComponent::class)->name('categoria.index');
+    Route::get('/categoria/registrar', RegistrarCategoriaComponent::class)->name('categoria.registrar');
+    Route::get('/categoria/editar/{categoria_id}', EditarCategoriaComponent::class)->name('categoria.editar');
+
+     //Para los productos
+     Route::get('/producto', ProductoComponent::class)->name('producto.index');
+     Route::get('/producto/registrar', RegistrarProductoComponent::class)->name('producto.registrar');
+     Route::get('/producto/editar/{producto_id}', EditarProductoComponent::class)->name('producto.editar');
+     
+     //Para las nota de compras
+     Route::get('/nota_compra', NotaCompraComponent::class)->name('nota_compra.index');
+     Route::get('/nota_compra/registrar', RegistrarNotaCompraComponent::class)->name('nota_compra.registrar');
+     Route::get('/nota_compra/editar/{nota_compra_id}', EditarNotaCompraComponent::class)->name('nota_compra.editar');
 });

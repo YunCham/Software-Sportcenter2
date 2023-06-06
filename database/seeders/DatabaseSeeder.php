@@ -62,8 +62,8 @@ class DatabaseSeeder extends Seeder
             ],
            //nro 7
             [
-                'name' => 'María González',
-                'email' => 'maria@hotmail.com',
+                'name' => 'Juan Pablo Rodriguez',
+                'email' => 'pablojuan123sc@hotmail.com',
                 'password' => bcrypt('password123')
             ],
            

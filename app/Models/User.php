@@ -61,4 +61,8 @@ class User extends Authenticatable
   public function transaccions(){
     return $this->hasMany(Transaccion::class);
   }
+   //relacion de uno a muchos 
+   public function notasCompra(){
+    return $this->hasMany(NotaCompra::class);
+  }
 }

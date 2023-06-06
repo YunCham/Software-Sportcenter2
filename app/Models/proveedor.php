@@ -16,4 +16,9 @@ class Proveedor extends Model
         'about',
         'tipo_proveedor'
     ];
+    public function notasCompra()
+    {
+        return $this->hasMany(NotaCompra::class);
+    }
+
 }

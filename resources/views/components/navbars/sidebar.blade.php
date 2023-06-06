@@ -126,7 +126,7 @@
                 </a>
                 <div class="collapse" id="collapseMenu2">
                     <ul class="nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Nota de compra</a>
+                        <li class="nav-item"><a class="nav-link" href="{{route('nota_compra.index')}}">Nota de compra</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('proveedor.index') }}">Proveedor</a>
                         </li>

@@ -22,4 +22,10 @@ class Producto extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::class);
     }
+
+    //Relacion de muchos a muchos
+    public function notasCompra()
+    {
+        return $this->belongsToMany(NotaCompra::class, 'nota_compra_producto')->withPivot('cantidad');
+    }
 }

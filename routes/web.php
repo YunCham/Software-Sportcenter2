@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Area\AreaComponent;
+use App\Http\Livewire\Area\AreaEditar;
+use App\Http\Livewire\Area\AreaRegistrar;
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
@@ -150,4 +153,10 @@ Route::group(['middleware' => 'auth'], function () {
      Route::get('/nota_compra', NotaCompraComponent::class)->name('nota_compra.index');
      Route::get('/nota_compra/registrar', RegistrarNotaCompraComponent::class)->name('nota_compra.registrar');
      Route::get('/nota_compra/editar/{nota_compra_id}', EditarNotaCompraComponent::class)->name('nota_compra.editar');
+
+     Route::get('/area', AreaComponent::class)->name('area.index');
+     Route::get('/area/registrar', AreaRegistrar::class)->name('area.registrar');
+     Route::get('/area/editar/{area_id}', AreaEditar::class)->name('area.editar');
+
+
 });

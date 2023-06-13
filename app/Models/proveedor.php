@@ -12,7 +12,6 @@ class Proveedor extends Model
         'name',
         'email',
         'location',
-        
         'phone',
         'about',
         'tipo_proveedor'

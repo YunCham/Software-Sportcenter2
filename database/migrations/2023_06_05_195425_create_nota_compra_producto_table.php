@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('nota_compra_producto', function (Blueprint $table) {
             $table->id();
             $table->integer('cantidad');
-
+            $table->decimal('precio_unitario', 8, 2);
             $table->unsignedBigInteger('nota_compra_id');
             $table->unsignedBigInteger('producto_id');
 

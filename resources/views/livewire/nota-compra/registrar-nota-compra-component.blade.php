@@ -46,15 +46,19 @@
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-md-6">
+                            <!-- ... el resto del formulario ... -->
 
+                            <div class="mb-3 col-md-6">
                                 <label class="form-label">Monto Total</label>
                                 <input wire:model="total" name="precio" type="text"
-                                    class="form-control border border-2 p-2">
+                                    class="form-control border border-2 p-2" readonly>
                                 @error('total')
                                     <p class='text-danger inputerror'>{{ $message }} </p>
                                 @enderror
                             </div>
+
+                            <!-- ... el resto del formulario ... -->
+
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
@@ -65,10 +69,10 @@
                                             <p class="text-danger inputerror">{{ $message }}</p>
                                         @enderror
                                     </div>
-                                   
+
                                 </div>
                             </div>
-                           
+
 
 
                             <div class="card-header pb-0 p-3">
@@ -90,14 +94,18 @@
                                                     wire:model="selectedProductos.{{ $producto->id }}">
                                                 <label class="form-check-label"
                                                     for="producto_{{ $producto->id }}">{{ $producto->descripcion }}</label>
-                                                <label class="form-check-label"
-                                                    for="precio_{{ $producto->id }}"> -----> Precio: BS.{{ $producto->precio }}</label>
                                             </div>
                                             <div style="display: flex; align-items: center;">
                                                 <label for="cantidad_{{ $producto->id }}"
                                                     style="margin-right: 5px;">Cantidad:</label>
                                                 <input type="number" id="cantidad_{{ $producto->id }}"
                                                     wire:model="cantidad.{{ $producto->id }}"
+                                                    class="form-control border border-2 p-2">
+                                                <label for="precio_{{ $producto->id }}"
+                                                    style="margin-left: 5px; margin-right: 5px;">Precio
+                                                    unitario:</label>
+                                                <input type="number" id="precio_{{ $producto->id }}"
+                                                    wire:model="precioUnitario.{{ $producto->id }}"
                                                     class="form-control border border-2 p-2">
                                             </div>
                                         </li>
@@ -109,7 +117,11 @@
                                 @error('cantidad')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
+                                @error('precioUnitario')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
+
 
 
                         </div>

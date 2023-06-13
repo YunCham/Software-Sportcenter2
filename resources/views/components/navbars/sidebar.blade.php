@@ -155,11 +155,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{Route('categoria.index')}}">Categoría</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nota de salida</a>
+                        </li>
                     </ul>
                 </div>
             </li>
             {{-- Administracion de inventarios --}}
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white {{ Route::currentRouteName() == 'inventarios' ? ' active bg-gradient-primary' : '' }}"
                     href="#" id="navbarDropdown4" role="button" data-bs-toggle="collapse"
                     data-bs-target="#collapseMenu4" aria-expanded="false" aria-controls="collapseMenu4">
@@ -171,20 +174,11 @@
                 <div class="collapse" id="collapseMenu4">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inventario de productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inventario- Areas deportivas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inventario- Areas comunes</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="#">Nota de salida</a>
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
             {{-- Para las areas deportivas --}}
             <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'tables' ? ' active bg-gradient-primary' : '' }} "
@@ -223,11 +217,6 @@
                 </div>
             </li> --}}
             {{-- FIN Menu despegable de tablas --}}
-
-
-
-
-
             <li class="nav-item">
                 <a class="nav-link text-white {{ Route::currentRouteName() == 'billing' ? ' active bg-gradient-primary' : '' }}  "
                     href="{{ route('billing') }}">
